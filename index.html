@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Never Miss a Lead Again | Automated WhatsApp Replies</title>
-  <meta name="description" content="Stop losing clients to voicemail. Get an automated, personalized WhatsApp reply for every missed call. Keep your leads warm, even when you can't pick up the phone.">
+  <title>Reception | WhatsApp reply when you miss a call</title>
+  <meta name="description" content="Reception sends a WhatsApp message from your number when you miss a call. For solo professionals who can't always pick up. Plans from $49/month.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&family=Zilla+Slab:wght@600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -52,7 +52,8 @@
             sm: 'calc(var(--radius) * 0.6)',
           },
           fontFamily: {
-            sans: ['Geist', 'system-ui', 'sans-serif'],
+            sans: ['Libre Franklin', 'system-ui', 'sans-serif'],
+            display: ['Zilla Slab', 'Georgia', 'serif'],
           },
         },
       },
@@ -61,35 +62,110 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
-      --background: oklch(0.975 0.005 80);
-      --foreground: oklch(0.20 0.02 255);
+      /* Spruce: dependable local-service green, not SaaS navy or cream */
+      --background: oklch(0.98 0.004 155);
+      --foreground: oklch(0.22 0.03 155);
       --card: oklch(1 0 0);
-      --card-foreground: oklch(0.20 0.02 255);
+      --card-foreground: oklch(0.22 0.03 155);
       --popover: oklch(1 0 0);
-      --popover-foreground: oklch(0.20 0.02 255);
-      --primary: oklch(0.30 0.08 255);
+      --popover-foreground: oklch(0.22 0.03 155);
+      --primary: oklch(0.38 0.11 155);
       --primary-foreground: oklch(0.99 0 0);
-      --secondary: oklch(0.94 0.005 80);
-      --secondary-foreground: oklch(0.25 0.02 255);
-      --muted: oklch(0.94 0.008 250);
-      --muted-foreground: oklch(0.50 0.02 255);
-      --accent: oklch(0.92 0.01 250);
-      --accent-foreground: oklch(0.25 0.02 255);
-      --destructive: oklch(0.577 0.245 27.325);
-      --border: oklch(0.90 0.01 250);
-      --input: oklch(0.92 0.01 250);
-      --ring: oklch(0.40 0.08 255);
+      --secondary: oklch(0.94 0.012 155);
+      --secondary-foreground: oklch(0.28 0.03 155);
+      --muted: oklch(0.94 0.014 155);
+      --muted-foreground: oklch(0.42 0.035 155);
+      --accent: oklch(0.91 0.02 155);
+      --accent-foreground: oklch(0.28 0.03 155);
+      --destructive: oklch(0.55 0.2 25);
+      --border: oklch(0.88 0.018 155);
+      --input: oklch(0.92 0.012 155);
+      --ring: oklch(0.45 0.1 155);
+      --hero-wash: oklch(0.965 0.022 155);
       --radius: 0.5rem;
+      --font-display: 'Zilla Slab', Georgia, serif;
+      --font-body: 'Libre Franklin', system-ui, sans-serif;
+      --text-display: clamp(2.25rem, 5vw + 0.75rem, 4rem);
+      --text-headline: clamp(2rem, 3vw + 1rem, 2.875rem);
+      --text-title: 1.375rem;
+      --text-body: 1rem;
+      --text-small: 0.875rem;
+      --text-caption: 0.75rem;
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 0.75rem;
+      --space-lg: 1rem;
+      --space-xl: 1.5rem;
+      --space-2xl: 2rem;
+      --space-3xl: 3rem;
+      --space-4xl: 4rem;
+      --space-section-y: clamp(4rem, 8vw, 6rem);
+      --space-section-x: clamp(1rem, 4vw, 1.5rem);
+      --header-height: 4rem;
+      --z-sticky: 10;
+      --z-dropdown: 20;
+      --wa-header: oklch(0.38 0.09 165);
+      --wa-header-ink: oklch(0.99 0 0);
+      --wa-chat: oklch(0.93 0.018 95);
+      --wa-bubble: oklch(1 0 0);
+      --wa-bubble-ink: oklch(0.22 0.02 165);
+      --wa-meta: oklch(0.55 0.02 165);
+      --wa-frame: oklch(0.18 0.02 165);
     }
 
     html {
-      font-family: Geist, system-ui, sans-serif;
+      font-family: var(--font-body);
       background: var(--background);
+      scroll-padding-top: calc(var(--header-height) + var(--space-md));
     }
 
     body {
       background: var(--background);
       color: var(--foreground);
+      font-kerning: normal;
+      font-optical-sizing: auto;
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+    }
+
+    h1, h2, h3, .font-display, .site-wordmark {
+      text-rendering: optimizeLegibility;
+    }
+
+    [id] {
+      scroll-margin-top: calc(var(--header-height) + var(--space-md));
+    }
+
+    h1, h2 {
+      font-family: var(--font-display);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    h1 {
+      font-size: var(--text-display);
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: var(--text-headline);
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: var(--text-title);
+      font-weight: 600;
+      line-height: 1.3;
+      text-wrap: balance;
+    }
+
+    .font-display {
+      font-family: var(--font-display);
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
     }
 
     .bg-primary\/5 { background-color: color-mix(in oklch, var(--primary) 5%, transparent); }
@@ -115,100 +191,747 @@
     .border-primary { border-color: var(--primary); }
     .hover\:bg-muted:hover { background-color: var(--muted); }
     .hover\:text-foreground:hover { color: var(--foreground); }
+    .bg-hero-wash { background-color: var(--hero-wash); }
+
+    .step-list {
+      display: grid;
+      gap: 2rem;
+      margin-top: 3rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    @media (min-width: 640px) {
+      .step-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        margin-top: 4rem;
+      }
+    }
+
+    .step-list li {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .step-list .step-num {
+      font-family: var(--font-display);
+      font-size: var(--text-small);
+      font-weight: 600;
+      color: var(--muted-foreground);
+    }
+
+    .feature-list {
+      margin-top: 3rem;
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      list-style: none;
+      padding: 0;
+    }
+
+    @media (min-width: 640px) {
+      .feature-list { margin-top: 4rem; }
+    }
+
+    .feature-list li {
+      display: grid;
+      gap: 0.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 640px) {
+      .feature-list li {
+        grid-template-columns: 11rem 1fr;
+        gap: 2rem;
+        align-items: baseline;
+      }
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 64rem;
+      margin-inline: auto;
+      padding-inline: var(--space-section-x);
+    }
+
+    .page-shell--wide {
+      max-width: 80rem;
+    }
+
+    .page-shell--narrow {
+      max-width: 48rem;
+    }
+
+    .page-shell--demo {
+      max-width: 42rem;
+    }
+
+    .section-y {
+      padding-block: var(--space-section-y);
+    }
+
+    .footer-y {
+      padding-block: var(--space-3xl);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      border-bottom: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+      background-color: var(--background);
+    }
+
+    .site-header__bar {
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      width: 100%;
+    }
+
+    .site-header__brand-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(1.25rem, 3vw, 2.5rem);
+      min-width: 0;
+      flex: 1;
+    }
+
+    .site-wordmark {
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .site-wordmark:hover {
+      color: var(--foreground);
+    }
+
+    .site-nav {
+      display: none;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--space-xl);
+      min-width: 0;
+    }
+
+    @media (min-width: 768px) {
+      .site-nav {
+        display: flex;
+      }
+    }
+
+    .site-nav a {
+      font-size: var(--text-body);
+      font-weight: 500;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s ease-out;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      color: var(--foreground);
+    }
+
+    .site-header__actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-md);
+      flex-shrink: 0;
+    }
+
+    .site-header__signal {
+      display: none;
+      align-items: center;
+      gap: 0.625rem;
+      padding-inline: var(--space-md);
+      color: var(--muted-foreground);
+    }
+
+    @media (min-width: 1024px) {
+      .site-header__signal {
+        display: flex;
+      }
+    }
+
+    .site-header__signal-icon {
+      width: 1.125rem;
+      height: 1.125rem;
+      flex-shrink: 0;
+    }
+
+    .site-header__signal-line {
+      width: 1.75rem;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        color-mix(in oklch, var(--muted-foreground) 35%, transparent),
+        var(--primary)
+      );
+      position: relative;
+    }
+
+    .site-header__signal-line::after {
+      content: '';
+      position: absolute;
+      right: -0.1875rem;
+      top: 50%;
+      width: 0.3125rem;
+      height: 0.3125rem;
+      border-radius: 999px;
+      background: var(--primary);
+      transform: translateY(-50%);
+    }
+
+    .site-header__signal-bubble {
+      display: grid;
+      place-items: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 0.375rem;
+      border-top-left-radius: 0.0625rem;
+      background: color-mix(in oklch, var(--primary) 12%, var(--background));
+      border: 1px solid color-mix(in oklch, var(--primary) 22%, transparent);
+      color: var(--primary);
+    }
+
+    .site-header__signal-bubble svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    .site-header__cta {
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .site-header__cta {
+        display: inline-flex;
+      }
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--background);
+      color: var(--foreground);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease-out;
+    }
+
+    .nav-toggle:hover {
+      background: var(--muted);
+    }
+
+    .nav-toggle:focus-visible {
+      outline: none;
+      border-color: var(--ring);
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
+    }
+
+    @media (min-width: 768px) {
+      .nav-toggle {
+        display: none;
+      }
+    }
+
+    .nav-toggle__icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .nav-toggle__icon--close {
+      display: none;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle__icon--open {
+      display: none;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle__icon--close {
+      display: block;
+    }
+
+    .site-nav-mobile {
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      z-index: var(--z-dropdown);
+      display: none;
+      flex-direction: column;
+      gap: var(--space-xs);
+      padding: var(--space-md) var(--space-section-x) var(--space-xl);
+      border-bottom: 1px solid var(--border);
+      background: var(--background);
+      box-shadow: 0 0.75rem 1.5rem color-mix(in oklch, var(--foreground) 8%, transparent);
+    }
+
+    .site-nav-mobile__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.75rem;
+      margin-top: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-size: var(--text-body);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .site-nav-mobile__cta:hover,
+    .site-nav-mobile__cta:focus-visible {
+      background: color-mix(in oklch, var(--primary) 80%, transparent);
+      color: var(--primary-foreground);
+    }
+
+    .site-nav-mobile[data-open="true"] {
+      display: flex;
+    }
+
+    @media (min-width: 768px) {
+      .site-nav-mobile {
+        display: none !important;
+      }
+    }
+
+    .site-nav-mobile a {
+      display: block;
+      padding: var(--space-md) 0;
+      font-size: var(--text-body);
+      color: var(--muted-foreground);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+    }
+
+    .site-nav-mobile a:last-child {
+      border-bottom: 0;
+    }
+
+    .site-nav-mobile a:hover,
+    .site-nav-mobile a:focus-visible {
+      color: var(--foreground);
+    }
+
+    .skip-link {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link:focus {
+      position: fixed;
+      top: var(--space-md);
+      left: var(--space-md);
+      z-index: calc(var(--z-dropdown) + 1);
+      width: auto;
+      height: auto;
+      padding: var(--space-md) var(--space-lg);
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+      border-radius: var(--radius);
+      background: var(--foreground);
+      color: var(--background);
+      text-decoration: none;
+      font-size: var(--text-small);
+      font-weight: 500;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .site-nav a,
+      .nav-toggle,
+      .site-nav-mobile a,
+      .wa-mockup__bubble {
+        transition: none;
+        animation: none;
+      }
+    }
+
+    .demo-showcase {
+      display: grid;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .demo-showcase {
+        grid-template-columns: minmax(0, 17.5rem) minmax(0, 1fr);
+        gap: var(--space-3xl);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .demo-showcase {
+        grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+        gap: var(--space-4xl);
+      }
+    }
+
+    .demo-showcase__proof {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .demo-showcase__caption {
+      font-size: var(--text-caption);
+      color: var(--muted-foreground);
+      text-align: center;
+    }
+
+    .wa-mockup {
+      width: min(100%, 17.5rem);
+      margin-inline: auto;
+      border-radius: 1.75rem;
+      border: 3px solid var(--wa-frame);
+      background: var(--wa-frame);
+      overflow: hidden;
+      box-shadow: 0 1rem 2.5rem color-mix(in oklch, var(--foreground) 12%, transparent);
+    }
+
+    .wa-mockup__screen {
+      border-radius: 1.35rem;
+      overflow: hidden;
+      background: var(--wa-chat);
+    }
+
+    .wa-mockup__topbar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--wa-header);
+      color: var(--wa-header-ink);
+    }
+
+    .wa-mockup__avatar {
+      display: grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--wa-header-ink) 18%, transparent);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .wa-mockup__contact {
+      min-width: 0;
+    }
+
+    .wa-mockup__name {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wa-mockup__status {
+      font-size: 0.6875rem;
+      opacity: 0.82;
+      line-height: 1.3;
+    }
+
+    .wa-mockup__chat {
+      min-height: 11.5rem;
+      padding: var(--space-lg) var(--space-md) var(--space-xl);
+      background:
+        radial-gradient(circle at 20% 18%, color-mix(in oklch, var(--wa-header) 6%, transparent) 0, transparent 42%),
+        radial-gradient(circle at 82% 72%, color-mix(in oklch, var(--wa-header) 5%, transparent) 0, transparent 38%),
+        var(--wa-chat);
+    }
+
+    .wa-mockup__bubble {
+      position: relative;
+      max-width: 92%;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: 0.625rem;
+      border-top-left-radius: 0.125rem;
+      background: var(--wa-bubble);
+      color: var(--wa-bubble-ink);
+      box-shadow: 0 1px 1px color-mix(in oklch, var(--foreground) 8%, transparent);
+      animation: wa-bubble-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .wa-mockup__bubble::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -0.375rem;
+      width: 0.625rem;
+      height: 0.75rem;
+      background: var(--wa-bubble);
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+
+    .wa-mockup__message {
+      margin: 0;
+      font-size: 0.8125rem;
+      line-height: 1.45;
+      text-wrap: pretty;
+    }
+
+    .wa-mockup__meta {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.25rem;
+      margin-top: var(--space-sm);
+      font-size: 0.625rem;
+      color: var(--wa-meta);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .wa-mockup__ticks {
+      width: 0.875rem;
+      height: 0.875rem;
+      color: color-mix(in oklch, var(--wa-header) 55%, var(--wa-meta));
+    }
+
+    .demo-showcase__action {
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .demo-showcase__action {
+        text-align: left;
+      }
+    }
+
+    @keyframes wa-bubble-in {
+      from {
+        opacity: 0.72;
+        transform: translateY(0.375rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .plan-price {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 0.25rem 0.375rem;
+      margin-top: var(--space-md);
+      font-size: var(--text-small);
+      color: var(--muted-foreground);
+      line-height: 1.4;
+    }
+
+    .plan-price__amount {
+      font-size: 2.25rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+      line-height: 1;
+    }
+
+    .plan-price--stacked {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
   </style>
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans">
   <div class="min-h-screen bg-background">
 
-    <main>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+      <div class="site-header__bar">
+        <div class="page-shell page-shell--wide">
+          <div class="site-header__inner">
+            <div class="site-header__brand-nav">
+              <a href="#" class="site-wordmark">Reception</a>
+
+              <nav class="site-nav" aria-label="Main">
+                <a href="#how-it-works">How it works</a>
+                <a href="#features">What you get</a>
+                <a href="#pricing">Pricing</a>
+              </nav>
+            </div>
+
+            <div class="site-header__actions">
+              <div class="site-header__signal" aria-hidden="true">
+                <svg class="site-header__signal-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+                </svg>
+                <span class="site-header__signal-line"></span>
+                <span class="site-header__signal-bubble">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"/>
+                  </svg>
+                </span>
+              </div>
+
+              <a href="#pricing" class="site-header__cta inline-flex h-11 shrink-0 items-center justify-center rounded-lg border border-transparent bg-primary px-4 text-sm font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
+                View pricing plans
+              </a>
+              <button type="button" class="nav-toggle md:hidden" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Open menu">
+                <svg class="nav-toggle__icon nav-toggle__icon--open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                </svg>
+                <svg class="nav-toggle__icon nav-toggle__icon--close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="site-nav-mobile md:hidden" id="nav-mobile" aria-label="Mobile" data-open="false">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">What you get</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#pricing" class="site-nav-mobile__cta">View pricing plans</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
 
       <!-- Hero -->
-      <section class="relative overflow-hidden px-4 py-20 sm:px-6 sm:py-28 lg:py-32">
-        <div class="mx-auto max-w-3xl text-center">
-          <h1 class="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+      <section class="relative overflow-hidden bg-hero-wash section-y">
+        <div class="page-shell page-shell--narrow text-center">
+          <h1 class="text-balance text-foreground">
             Stop losing clients to voicemail.
           </h1>
           <p class="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            An automated, personalized WhatsApp reply for every missed call. Keep your leads warm, even when you can't pick up the phone.
+            Miss a call, and your caller gets a WhatsApp message from your number within seconds. Written in your voice, sent while you're on the job or with a client.
           </p>
           <div class="mt-10 flex flex-col items-center gap-4">
-            <button type="button" class="inline-flex h-9 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-8 py-6 text-base font-medium text-primary-foreground whitespace-nowrap transition-all outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
-              Start Catching Missed Calls
-            </button>
+            <a href="#pricing" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
+              View pricing plans
+            </a>
             <div class="flex items-center gap-2 text-sm text-muted-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
               </svg>
-              <span>Simple setup. No apps to install. No long-term contracts.</span>
+              <span>Works with your existing number. No app to install. Cancel anytime.</span>
             </div>
           </div>
         </div>
       </section>
 
       <!-- How It Works -->
-      <section id="how-it-works" class="bg-card px-4 py-16 sm:px-6 sm:py-24">
-        <div class="mx-auto max-w-5xl">
-          <h2 class="text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">How it works</h2>
+      <section id="how-it-works" class="bg-card section-y">
+        <div class="page-shell page-shell--wide">
+          <h2 class="text-center text-foreground">How it works</h2>
 
-          <div class="mt-12 grid gap-8 sm:mt-16 sm:grid-cols-3 sm:gap-6 lg:gap-12">
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 3.75 18 6m0 0 2.25 2.25M18 6l2.25-2.25M18 6l-2.25 2.25m1.5 13.5c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z"/>
-                </svg>
-              </div>
-              <div class="mt-2 flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">1</div>
-              <h3 class="mt-4 text-lg font-medium text-foreground">You Miss a Call</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">You're in a meeting, on a job site, or with a client. The phone rings out.</p>
-            </div>
-
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/>
-                </svg>
-              </div>
-              <div class="mt-2 flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">2</div>
-              <h3 class="mt-4 text-lg font-medium text-foreground">They Get a Text</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Instantly, the caller receives a professional, pre-written WhatsApp message from your number.</p>
-            </div>
-
-            <div class="flex flex-col items-center text-center">
-              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
-                </svg>
-              </div>
-              <div class="mt-2 flex h-8 w-8 items-center justify-center rounded-full bg-muted text-sm font-medium text-muted-foreground">3</div>
-              <h3 class="mt-4 text-lg font-medium text-foreground">You Follow Up</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">The caller feels acknowledged, stops searching for your competitors, and you reply the moment you're free.</p>
-            </div>
-          </div>
+          <ol class="step-list max-w-4xl mx-auto">
+            <li>
+              <span class="step-num">Step 1</span>
+              <h3 class="font-semibold text-foreground">You miss a call</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">You're in a meeting, on a job site, or with a client. The phone rings out.</p>
+            </li>
+            <li>
+              <span class="step-num">Step 2</span>
+              <h3 class="font-semibold text-foreground">They get your reply</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">Within seconds, they receive a WhatsApp message from your number. Something like: "Sorry I missed your call. I'm on a job right now but I'll call you back as soon as I'm free."</p>
+            </li>
+            <li>
+              <span class="step-num">Step 3</span>
+              <h3 class="font-semibold text-foreground">You follow up</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">They know you'll call back. You reply when you're free, and they're still waiting for you.</p>
+            </li>
+          </ol>
 
           <p class="mt-12 text-center text-sm text-muted-foreground sm:mt-16">
-            Works seamlessly with your current phone number via standard call forwarding. No IT headaches.
+            Uses call forwarding on the number you already have. We handle the setup.
           </p>
         </div>
       </section>
 
       <!-- Try It Live -->
-      <section class="px-4 py-16 sm:px-6 sm:py-24">
-        <div class="mx-auto max-w-2xl">
-          <div class="rounded-lg border-2 border-primary/20 bg-primary/5 p-6 sm:p-10">
-            <div class="text-center">
-              <h2 class="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-                Experience it from your client's perspective.
-              </h2>
-              <p class="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                Don't take our word for it. Call the number below right now. We will intentionally let it ring out, and you will see exactly what your missed callers experience on WhatsApp within seconds.
-              </p>
-              <div class="mt-8">
-                <button type="button" class="inline-flex h-9 w-full shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent bg-primary px-8 py-6 text-base font-medium text-primary-foreground whitespace-nowrap transition-all outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
-                  </svg>
-                  Call +1 (555) 123-4567
-                </button>
+      <section class="section-y" aria-labelledby="demo-heading">
+        <div class="page-shell page-shell--wide">
+          <div class="demo-showcase">
+            <div class="demo-showcase__proof">
+              <figure class="wa-mockup">
+                <div class="wa-mockup__screen">
+                  <div class="wa-mockup__topbar">
+                    <div class="wa-mockup__avatar" aria-hidden="true">RP</div>
+                    <div class="wa-mockup__contact">
+                      <div class="wa-mockup__name">Rivera Plumbing</div>
+                      <div class="wa-mockup__status">Business account</div>
+                    </div>
+                  </div>
+                  <div class="wa-mockup__chat">
+                    <blockquote class="wa-mockup__bubble">
+                      <p class="wa-mockup__message">Hi, sorry I missed your call. I'm on a job right now but I'll call you back as soon as I'm free. If you need to leave details, just reply here.</p>
+                      <div class="wa-mockup__meta">
+                        <time datetime="14:14">2:14 PM</time>
+                        <svg class="wa-mockup__ticks" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" fill="none" aria-hidden="true">
+                          <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z" fill="currentColor"/>
+                        </svg>
+                      </div>
+                    </blockquote>
+                  </div>
+                </div>
+                <figcaption class="demo-showcase__caption">What your caller sees on their phone</figcaption>
+              </figure>
+            </div>
+
+            <div class="demo-showcase__action">
+              <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
+                <h2 id="demo-heading" class="text-foreground">
+                  Call now and see what your callers get
+                </h2>
+                <p class="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base text-pretty">
+                  Call the demo number below. We'll let it ring out on purpose. Within seconds, you'll receive the same WhatsApp message your missed callers get.
+                </p>
+                <div class="mt-8">
+                  <a href="tel:+15551234567" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+                    </svg>
+                    Call demo: +1 (555) 123-4567
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -216,217 +939,164 @@
       </section>
 
       <!-- ROI -->
-      <section class="bg-card px-4 py-16 sm:px-6 sm:py-24">
-        <div class="mx-auto max-w-3xl">
-          <h2 class="text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">The math is simple.</h2>
+      <section class="bg-card section-y">
+        <div class="page-shell page-shell--narrow">
+          <h2 class="text-center text-foreground">One saved client covers the year</h2>
 
-          <div class="mt-10 sm:mt-12">
-            <p class="text-center text-base leading-relaxed text-muted-foreground sm:text-lg">
-              For most independent professionals, a missed call is a missed opportunity. If a potential client can't reach you, they call the next name on Google.
+          <div class="mt-10 max-w-2xl mx-auto sm:mt-12">
+            <p class="text-center text-base leading-relaxed text-muted-foreground sm:text-lg text-pretty">
+              When someone can't reach you, they often call the next name on Google. Reception is $49 a month. Save one client you'd have lost to voicemail, and you've paid for the rest of the year.
             </p>
-
-            <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
-              <div class="flex flex-col items-center rounded-lg border border-border bg-background p-6 text-center">
-                <span class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Service Cost</span>
-                <span class="mt-2 text-3xl font-semibold text-foreground">$49</span>
-                <span class="text-sm text-muted-foreground">/month</span>
-              </div>
-
-              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6 text-muted-foreground sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-              </svg>
-              <div class="block text-muted-foreground sm:hidden">↓</div>
-
-              <div class="flex flex-col items-center rounded-lg border border-border bg-background p-6 text-center">
-                <span class="text-sm font-medium uppercase tracking-wide text-muted-foreground">Save Just</span>
-                <span class="mt-2 text-3xl font-semibold text-foreground">1</span>
-                <span class="text-sm text-muted-foreground">client/year</span>
-              </div>
-
-              <svg xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6 text-muted-foreground sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
-              </svg>
-              <div class="block text-muted-foreground sm:hidden">↓</div>
-
-              <div class="flex flex-col items-center rounded-lg border-2 border-primary/30 bg-primary/5 p-6 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                </svg>
-                <span class="mt-1 text-sm font-medium uppercase tracking-wide text-primary">ROI</span>
-                <span class="mt-1 text-lg font-medium text-foreground">Pays for itself</span>
-              </div>
-            </div>
-
-            <p class="mt-10 text-center text-base leading-relaxed text-muted-foreground">
-              If an automated WhatsApp reply saves just ONE lost client this year, the system has already paid for itself several times over. The logic speaks for itself.
+            <p class="mt-6 text-center text-base leading-relaxed text-muted-foreground text-pretty">
+              Most solo professionals lose more than one caller a year. The first one you keep makes the math straightforward.
             </p>
           </div>
         </div>
       </section>
 
       <!-- Features -->
-      <section id="features" class="px-4 py-16 sm:px-6 sm:py-24">
-        <div class="mx-auto max-w-5xl">
-          <h2 class="text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            Designed for how you actually work.
+      <section id="features" class="section-y">
+        <div class="page-shell page-shell--wide">
+          <h2 class="text-center text-foreground">
+            What you get
           </h2>
 
-          <div class="mt-12 grid gap-6 sm:mt-16 sm:grid-cols-3 sm:gap-8">
-            <div class="rounded-lg border border-border bg-card p-6 transition-shadow hover:shadow-md">
-              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                </svg>
-              </div>
-              <h3 class="mt-4 text-base font-medium text-foreground">Smart Scheduling</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Set different automated replies for your working hours versus nights and weekends.</p>
-            </div>
-
-            <div class="rounded-lg border border-border bg-card p-6 transition-shadow hover:shadow-md">
-              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 0 0 5.636 5.636m12.728 12.728A9 9 0 0 1 5.636 5.636m12.728 12.728L5.636 5.636"/>
-                </svg>
-              </div>
-              <h3 class="mt-4 text-base font-medium text-foreground">The Blacklist</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Easily exclude personal contacts, family members, or spam numbers from receiving automated replies.</p>
-            </div>
-
-            <div class="rounded-lg border border-border bg-card p-6 transition-shadow hover:shadow-md">
-              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                </svg>
-              </div>
-              <h3 class="mt-4 text-base font-medium text-foreground">Set It and Forget It</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Once we set up your customized messages, the system runs quietly in the background.</p>
-            </div>
-          </div>
+          <ul class="feature-list max-w-3xl mx-auto">
+            <li>
+              <h3 class="font-semibold text-foreground">Business hours</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">Different WhatsApp replies for working hours, evenings, and weekends.</p>
+            </li>
+            <li>
+              <h3 class="font-semibold text-foreground">Excluded numbers</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">Skip family, friends, and spam. Only business callers get the automatic reply.</p>
+            </li>
+            <li>
+              <h3 class="font-semibold text-foreground">We set it up</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">We write your messages and connect your number. After that, it runs without you touching it.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
       <!-- Pricing -->
-      <section id="pricing" class="bg-card px-4 py-16 sm:px-6 sm:py-24">
-        <div class="mx-auto max-w-5xl">
-          <h2 class="text-center text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">Simple, transparent pricing.</h2>
+      <section id="pricing" class="bg-card section-y">
+        <div class="page-shell page-shell--wide">
+          <h2 class="text-center text-foreground">Pricing</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-pretty text-muted-foreground sm:text-base">Choose a plan, then send us a message. We'll confirm details and set up Reception on your number.</p>
 
           <div class="mt-12 grid gap-6 sm:mt-16 md:grid-cols-3">
 
             <!-- Solo Professional -->
             <div class="relative flex flex-col rounded-lg border border-border bg-background p-6">
               <div class="text-center">
-                <h3 class="text-lg font-medium text-foreground">The Solo Professional</h3>
-                <p class="mt-1 text-sm text-muted-foreground">Monthly</p>
+                <h3 class="font-display font-semibold text-foreground">Solo</h3>
               </div>
               <div class="mt-6 text-center">
-                <p class="text-sm text-muted-foreground">$99 setup (covers Month 1)</p>
-                <div class="mt-2 flex items-baseline justify-center gap-1">
-                  <span class="text-4xl font-semibold tracking-tight text-foreground">$49</span>
-                </div>
-                <p class="mt-1 text-sm text-muted-foreground">/month thereafter</p>
+                <p class="text-sm text-muted-foreground">$99 setup fee (includes month 1)</p>
+                <p class="plan-price">
+                  <span>then</span>
+                  <span class="plan-price__amount">$49</span>
+                  <span>per month</span>
+                </p>
               </div>
               <ul class="mt-6 flex-1 space-y-3">
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">1 Connected Phone Number</span>
+                  <span class="text-sm text-muted-foreground">1 phone number</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Full feature access</span>
+                  <span class="text-sm text-muted-foreground">Custom, personalized WhatsApp Message</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">The Blacklist</span>
+                  <span class="text-sm text-muted-foreground">Business hours and after-hours messages</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Custom copywriting setup</span>
+                  <span class="text-sm text-muted-foreground">Excluded numbers list</span>
                 </li>
               </ul>
               <div class="mt-8">
-                <button type="button" class="inline-flex h-8 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">Choose Solo</button>
+                <a href="https://argo-navis.net/?plan=solo#contact" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" rel="noopener noreferrer">Start Solo plan</a>
               </div>
             </div>
 
             <!-- Multi-Line Practice -->
             <div class="relative flex flex-col rounded-lg border border-border bg-background p-6">
               <div class="text-center">
-                <h3 class="text-lg font-medium text-foreground">The Multi-Line Practice</h3>
-                <p class="mt-1 text-sm text-muted-foreground">Monthly</p>
+                <h3 class="font-display font-semibold text-foreground">Multi-line</h3>
               </div>
               <div class="mt-6 text-center">
-                <p class="text-sm text-muted-foreground">$149 setup (covers Month 1)</p>
-                <div class="mt-2 flex items-baseline justify-center gap-1">
-                  <span class="text-4xl font-semibold tracking-tight text-foreground">$89</span>
-                </div>
-                <p class="mt-1 text-sm text-muted-foreground">/month thereafter</p>
+                <p class="text-sm text-muted-foreground">$149 setup fee (includes month 1)</p>
+                <p class="plan-price">
+                  <span>then</span>
+                  <span class="plan-price__amount">$89</span>
+                  <span>per month</span>
+                </p>
               </div>
               <ul class="mt-6 flex-1 space-y-3">
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Up to 3 Connected Phone Numbers</span>
+                  <span class="text-sm text-muted-foreground">Up to 3 phone numbers</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Everything in the Solo plan</span>
+                  <span class="text-sm text-muted-foreground">Everything in Solo</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Custom messaging per number</span>
+                  <span class="text-sm text-muted-foreground">A different message per number</span>
                 </li>
               </ul>
               <div class="mt-8">
-                <button type="button" class="inline-flex h-8 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-2.5 text-sm font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">Choose Multi-Line</button>
+                <a href="https://argo-navis.net/?plan=multi-line#contact" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" rel="noopener noreferrer">Start Multi-line plan</a>
               </div>
             </div>
 
             <!-- Annual Partner (highlighted) -->
-            <div class="relative flex flex-col rounded-lg border border-primary bg-primary/5 p-6 shadow-lg">
+            <div class="relative flex flex-col rounded-lg border border-primary/30 bg-primary/5 p-6">
               <div class="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span class="inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"/>
-                  </svg>
+                <span class="inline-flex rounded-full border border-primary/30 bg-card px-3 py-1 text-xs font-medium text-primary">
                   Recommended
                 </span>
               </div>
               <div class="text-center">
-                <h3 class="text-lg font-medium text-foreground">The Annual Partner</h3>
-                <p class="mt-1 text-sm text-muted-foreground">Recommended</p>
+                <h3 class="font-display font-semibold text-foreground">Annual</h3>
+                <p class="mt-1 text-sm text-muted-foreground">Pay once, 14 months of service</p>
               </div>
               <div class="mt-6 text-center">
-                <div class="mt-2 flex items-baseline justify-center gap-1">
-                  <span class="text-4xl font-semibold tracking-tight text-foreground">$790</span>
-                </div>
-                <p class="mt-1 text-sm text-muted-foreground">billed once</p>
+                <p class="plan-price plan-price--stacked">
+                  <span class="plan-price__amount">$790</span>
+                  <span>1st month included</span>
+                </p>
               </div>
               <ul class="mt-6 flex-1 space-y-3">
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">1 Connected Phone Number</span>
+                  <span class="text-sm text-muted-foreground">1 phone number</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Maximum ROI</span>
+                  <span class="text-sm text-muted-foreground">Lowest cost per month</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -438,11 +1108,11 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">2 additional months free (14 months total)</span>
+                  <span class="text-sm text-muted-foreground">2 extra months included</span>
                 </li>
               </ul>
               <div class="mt-8">
-                <button type="button" class="inline-flex h-8 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-2.5 text-sm font-medium text-primary-foreground whitespace-nowrap transition-all outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">Choose Annual</button>
+                <a href="https://argo-navis.net/?plan=annual#contact" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-3 text-sm font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" rel="noopener noreferrer">Start Annual plan</a>
               </div>
             </div>
 
@@ -453,19 +1123,19 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-border bg-background px-4 py-10 sm:px-6">
-      <div class="mx-auto max-w-5xl">
+    <footer class="border-t border-border bg-background footer-y">
+      <div class="page-shell page-shell--wide">
         <div class="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
           <div class="text-center sm:text-left">
-            <span class="text-lg font-semibold tracking-tight text-foreground">CallCatch</span>
-            <p class="mt-1 text-sm text-muted-foreground">Never lose a lead to voicemail again.</p>
+            <span class="font-display text-xl font-semibold tracking-tight text-foreground">Reception</span>
+            <p class="mt-1 text-sm text-muted-foreground">WhatsApp replies when you miss a call.</p>
           </div>
 
-          <nav class="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-            <a href="#how-it-works" class="transition-colors hover:text-foreground">How It Works</a>
-            <a href="#features" class="transition-colors hover:text-foreground">Features</a>
-            <a href="#pricing" class="transition-colors hover:text-foreground">Pricing</a>
-            <a href="#" class="transition-colors hover:text-foreground">Contact</a>
+          <nav class="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground" aria-label="Footer">
+            <a href="#how-it-works" class="transition-colors hover:text-foreground">How it works</a>
+            <a href="#features" class="transition-colors hover:text-foreground">What you get</a>
+            <a href="#pricing" class="transition-colors hover:text-foreground">View pricing plans</a>
+            <a href="https://argo-navis.net/#contact" class="transition-colors hover:text-foreground" rel="noopener noreferrer">Contact us</a>
           </nav>
         </div>
 
@@ -476,5 +1146,47 @@
     </footer>
 
   </div>
+
+  <script>
+    (function () {
+      var toggle = document.getElementById('nav-toggle');
+      var panel = document.getElementById('nav-mobile');
+      if (!toggle || !panel) return;
+
+      function setOpen(open) {
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        panel.setAttribute('data-open', String(open));
+      }
+
+      toggle.addEventListener('click', function () {
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      panel.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setOpen(false);
+        });
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+
+      window.matchMedia('(min-width: 768px)').addEventListener('change', function (event) {
+        if (event.matches) setOpen(false);
+      });
+    })();
+  </script>
+
+  <style id="reception-overrides">
+    /* Tailwind preflight sets heading font-size: inherit; restore display scale last. */
+    h1 { font-family: var(--font-display); font-size: var(--text-display); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+    h2 { font-family: var(--font-display); font-size: var(--text-headline); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+    h3 { font-size: var(--text-title); font-weight: 600; line-height: 1.3; }
+  </style>
 </body>
 </html>
