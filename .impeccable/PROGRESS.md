@@ -34,14 +34,15 @@ Last updated: 2026-06-06
 | 11 | `/impeccable polish index.html` | Heading scale bump + Tailwind preflight override; font-smoothing fix; header grid layout; full-bleed mobile menu |
 | 12 | `/impeccable critique index.html` | 29/40 Good (was 24); P1 demo number + off-site conversion; P2 FAQ + pricing repetition |
 | 13 | `/impeccable critique index.html` | 29/40 Good (excl. demo/unwired); P1 hero composition; header left-aligned + signal ornament |
+| 14 | `/impeccable layout index.html` | Hero split (left copy / right flow visual); ROI asymmetric pull quote; section headings left on md+ |
+| 15 | `/impeccable onboard index.html` | Open FAQ section (5 Qs, ruled list, always visible); linked from pricing + footer |
 
 ## Pending (agreed order)
 
-Optional follow-ups from latest critique:
+Optional follow-ups:
 
-1. Left-align hero with right-side visual to match demo section (`/impeccable layout`)
-2. Short FAQ for blockers (`/impeccable onboard`)
-3. Distill pricing card repetition (`/impeccable distill`)
+1. Distill pricing card repetition (`/impeccable distill`)
+2. Fresh critique after FAQ (`/impeccable critique index.html`)
 
 ## Current design tokens (`index.html` `:root`)
 

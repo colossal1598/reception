@@ -109,6 +109,10 @@
       --wa-chat: oklch(0.93 0.018 95);
       --wa-bubble: oklch(1 0 0);
       --wa-bubble-ink: oklch(0.22 0.02 165);
+      --wa-bubble-out: oklch(0.91 0.042 145);
+      --wa-bubble-out-ink: oklch(0.2 0.03 165);
+      --wa-sender-you: oklch(0.38 0.12 165);
+      --wa-sender-client: oklch(0.5 0.16 35);
       --wa-meta: oklch(0.55 0.02 165);
       --wa-frame: oklch(0.18 0.02 165);
     }
@@ -248,6 +252,52 @@
         gap: 2rem;
         align-items: baseline;
       }
+    }
+
+    .faq-list {
+      margin-top: 3rem;
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--border);
+      padding: 0;
+    }
+
+    @media (min-width: 640px) {
+      .faq-list {
+        margin-top: 4rem;
+      }
+    }
+
+    .faq-list__item {
+      display: grid;
+      gap: var(--space-sm);
+      padding: var(--space-xl) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 640px) {
+      .faq-list__item {
+        grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+        gap: var(--space-2xl);
+        align-items: start;
+      }
+    }
+
+    .faq-list__q {
+      margin: 0;
+      font-size: var(--text-title);
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--foreground);
+      text-wrap: balance;
+    }
+
+    .faq-list__a {
+      margin: 0;
+      font-size: var(--text-body);
+      line-height: 1.625;
+      color: var(--muted-foreground);
+      text-wrap: pretty;
     }
 
     .page-shell {
@@ -575,9 +625,397 @@
       .site-nav a,
       .nav-toggle,
       .site-nav-mobile a,
-      .wa-mockup__bubble {
+      .wa-mockup__bubble,
+      .hero-visual__bubble {
         transition: none;
         animation: none;
+      }
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__grid {
+      display: grid;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero__grid {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: clamp(2rem, 5vw, var(--space-4xl));
+      }
+    }
+
+    @media (min-width: 960px) {
+      .hero__grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      }
+    }
+
+    .hero__copy {
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero__copy {
+        text-align: left;
+      }
+    }
+
+    .hero__lead {
+      margin-top: var(--space-xl);
+      max-width: 36rem;
+      font-size: var(--text-body);
+      line-height: 1.625;
+      text-wrap: pretty;
+      color: var(--muted-foreground);
+    }
+
+    @media (min-width: 640px) {
+      .hero__lead {
+        font-size: 1.125rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero__lead {
+        margin-inline: 0;
+      }
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+    }
+
+    @media (min-width: 768px) {
+      .hero__actions {
+        align-items: flex-start;
+      }
+    }
+
+    .hero__reassurance {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      font-size: var(--text-small);
+      color: var(--muted-foreground);
+      text-align: left;
+      max-width: 22rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero__reassurance {
+        justify-content: flex-start;
+      }
+    }
+
+    .hero__reassurance svg {
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+
+    .hero__visual {
+      display: flex;
+      justify-content: center;
+      padding-inline: var(--space-md);
+    }
+
+    @media (min-width: 768px) {
+      .hero__visual {
+        justify-content: flex-end;
+        padding-inline: 0;
+      }
+    }
+
+    .hero-visual {
+      position: relative;
+      width: min(100%, 20rem);
+      display: grid;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero-visual {
+        width: min(100%, 22rem);
+      }
+    }
+
+    .hero-visual__phone {
+      position: relative;
+      border-radius: 1.75rem;
+      border: 3px solid var(--wa-frame);
+      background: var(--card);
+      overflow: hidden;
+      box-shadow: 0 1rem 2.5rem color-mix(in oklch, var(--foreground) 10%, transparent);
+    }
+
+    .hero-visual__screen {
+      padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+      background:
+        radial-gradient(circle at 50% 0%, color-mix(in oklch, var(--primary) 8%, transparent) 0, transparent 55%),
+        var(--card);
+    }
+
+    .hero-visual__call {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      text-align: center;
+    }
+
+    .hero-visual__call-icon {
+      display: grid;
+      place-items: center;
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 999px;
+      background: color-mix(in oklch, var(--destructive) 12%, var(--card));
+      color: var(--destructive);
+    }
+
+    .hero-visual__call-icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .hero-visual__call-label {
+      margin: 0;
+      font-size: var(--text-small);
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .hero-visual__call-meta {
+      margin: 0;
+      font-size: var(--text-caption);
+      color: var(--muted-foreground);
+    }
+
+    .hero-visual__bridge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding-inline: var(--space-xl);
+      color: var(--muted-foreground);
+      font-size: var(--text-caption);
+      font-weight: 500;
+    }
+
+    .hero-visual__bridge-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        color-mix(in oklch, var(--border) 80%, transparent),
+        var(--primary)
+      );
+    }
+
+    .hero-visual__bridge-dot {
+      width: 0.375rem;
+      height: 0.375rem;
+      border-radius: 999px;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .hero-visual__chat {
+      padding: var(--space-lg) var(--space-md);
+      border-radius: 1rem;
+      background:
+        radial-gradient(circle at 20% 18%, color-mix(in oklch, var(--wa-header) 6%, transparent) 0, transparent 42%),
+        radial-gradient(circle at 82% 72%, color-mix(in oklch, var(--wa-header) 5%, transparent) 0, transparent 38%),
+        var(--wa-chat);
+    }
+
+    .hero-visual__thread {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-visual__bubble {
+      position: relative;
+      align-self: flex-start;
+      max-width: 90%;
+      padding: var(--space-sm) var(--space-lg) var(--space-md);
+      border-radius: 0.625rem;
+      border-top-left-radius: 0.125rem;
+      background: var(--wa-bubble);
+      color: var(--wa-bubble-ink);
+      box-shadow: 0 1px 1px color-mix(in oklch, var(--foreground) 10%, transparent);
+      animation: hero-bubble-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero-visual__bubble::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -0.375rem;
+      width: 0.625rem;
+      height: 0.75rem;
+      background: var(--wa-bubble);
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+
+    .hero-visual__bubble--first {
+      align-self: flex-end;
+      border-top-left-radius: 0.625rem;
+      border-top-right-radius: 0.125rem;
+      background: var(--wa-bubble-out);
+      color: var(--wa-bubble-out-ink);
+      animation-delay: 0.15s;
+    }
+
+    .hero-visual__bubble--first::before {
+      left: auto;
+      right: -0.375rem;
+      background: var(--wa-bubble-out);
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    .hero-visual__bubble--second {
+      animation-delay: 0.35s;
+    }
+
+    .hero-visual__sender {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 1.3;
+    }
+
+    .hero-visual__sender--you {
+      color: var(--wa-sender-you);
+    }
+
+    .hero-visual__bubble--first .hero-visual__sender--you {
+      color: oklch(0.32 0.1 165);
+    }
+
+    .hero-visual__sender--client {
+      color: var(--wa-sender-client);
+    }
+
+    .hero-visual__bubble p {
+      margin: 0;
+      font-size: 0.8125rem;
+      line-height: 1.45;
+      text-wrap: pretty;
+    }
+
+    .hero-visual__bubble p + p {
+      margin-top: var(--space-sm);
+    }
+
+    .hero-visual__bubble-meta {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.25rem;
+      margin-top: var(--space-sm);
+      font-size: 0.625rem;
+      color: var(--wa-meta);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hero-visual__bubble-meta svg {
+      width: 0.875rem;
+      height: 0.875rem;
+      color: color-mix(in oklch, var(--wa-header) 55%, var(--wa-meta));
+    }
+
+    @keyframes hero-bubble-in {
+      from {
+        opacity: 0.75;
+        transform: translateY(0.5rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-heading {
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .section-heading {
+        text-align: left;
+        max-width: 36rem;
+      }
+
+      .section-heading--center {
+        text-align: center;
+        max-width: none;
+        margin-inline: auto;
+      }
+    }
+
+    .roi__layout {
+      display: grid;
+      gap: var(--space-2xl);
+    }
+
+    @media (min-width: 768px) {
+      .roi__layout {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: clamp(2rem, 5vw, var(--space-4xl));
+        align-items: start;
+      }
+    }
+
+    .roi__pull {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 2.5vw + 0.75rem, 2.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      color: var(--foreground);
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .roi__pull {
+        text-align: left;
+        padding-top: var(--space-sm);
+      }
+    }
+
+    .roi__body {
+      display: grid;
+      gap: var(--space-xl);
+    }
+
+    .roi__body p {
+      margin: 0;
+      font-size: var(--text-body);
+      line-height: 1.625;
+      text-wrap: pretty;
+      color: var(--muted-foreground);
+    }
+
+    @media (min-width: 640px) {
+      .roi__body p {
+        font-size: 1.125rem;
       }
     }
 
@@ -835,23 +1273,77 @@
     <main id="main-content">
 
       <!-- Hero -->
-      <section class="relative overflow-hidden bg-hero-wash section-y">
-        <div class="page-shell page-shell--narrow text-center">
-          <h1 class="text-balance text-foreground">
-            Stop losing clients to voicemail.
-          </h1>
-          <p class="mx-auto mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Miss a call, and your caller gets a WhatsApp message from your number within seconds. Written in your voice, sent while you're on the job or with a client.
-          </p>
-          <div class="mt-10 flex flex-col items-center gap-4">
-            <a href="#pricing" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
-              View pricing plans
-            </a>
-            <div class="flex items-center gap-2 text-sm text-muted-foreground">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
-              </svg>
-              <span>Works with your existing number. No app to install. Cancel anytime.</span>
+      <section class="hero bg-hero-wash section-y">
+        <div class="page-shell page-shell--wide">
+          <div class="hero__grid">
+            <div class="hero__copy">
+              <h1 class="text-balance text-foreground">
+                Stop losing clients to voicemail.
+              </h1>
+              <p class="hero__lead">
+                Miss a call, and your caller gets a WhatsApp message from your number within seconds. Written in your voice, sent while you're on the job or with a client.
+              </p>
+              <div class="hero__actions">
+                <a href="#pricing" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
+                  View pricing plans
+                </a>
+                <div class="hero__reassurance">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+                  </svg>
+                  <span>Works with your existing number. No app to install. Cancel anytime.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero__visual" aria-hidden="true">
+              <div class="hero-visual">
+                <div class="hero-visual__phone">
+                  <div class="hero-visual__screen">
+                    <div class="hero-visual__call">
+                      <div class="hero-visual__call-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 3.75 18 6m0 0 2.25 2.25M18 6l2.25-2.25M18 6l-2.25 2.25m1.5 13.5c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.055.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.062 1.062 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z"/>
+                        </svg>
+                      </div>
+                      <p class="hero-visual__call-label">Missed call</p>
+                      <p class="hero-visual__call-meta">While you're on the job</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hero-visual__bridge">
+                  <span class="hero-visual__bridge-line"></span>
+                  <span class="hero-visual__bridge-dot"></span>
+                  <span>Within seconds</span>
+                  <span class="hero-visual__bridge-dot"></span>
+                  <span class="hero-visual__bridge-line"></span>
+                </div>
+
+                <div class="hero-visual__chat">
+                  <div class="hero-visual__thread">
+                    <blockquote class="hero-visual__bubble hero-visual__bubble--first">
+                      <cite class="hero-visual__sender hero-visual__sender--you">Your number</cite>
+                      <p>Sorry I missed your call. I'm on a job right now but I'll call you back as soon as I'm free.</p>
+                      <p>How can I help?</p>
+                      <div class="hero-visual__bubble-meta">
+                        <time datetime="14:14">2:14 PM</time>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" fill="none" aria-hidden="true">
+                          <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z" fill="currentColor"/>
+                        </svg>
+                      </div>
+                    </blockquote>
+
+                    <blockquote class="hero-visual__bubble hero-visual__bubble--second">
+                      <cite class="hero-visual__sender hero-visual__sender--client">Possible client</cite>
+                      <p>Thanks for the message! This is what I need...</p>
+                      <div class="hero-visual__bubble-meta">
+                        <time datetime="14:16">2:16 PM</time>
+                      </div>
+                    </blockquote>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -860,7 +1352,7 @@
       <!-- How It Works -->
       <section id="how-it-works" class="bg-card section-y">
         <div class="page-shell page-shell--wide">
-          <h2 class="text-center text-foreground">How it works</h2>
+          <h2 class="section-heading text-foreground">How it works</h2>
 
           <ol class="step-list max-w-4xl mx-auto">
             <li>
@@ -940,16 +1432,18 @@
 
       <!-- ROI -->
       <section class="bg-card section-y">
-        <div class="page-shell page-shell--narrow">
-          <h2 class="text-center text-foreground">One saved client covers the year</h2>
+        <div class="page-shell page-shell--wide">
+          <div class="roi__layout">
+            <h2 class="roi__pull">One saved client covers the year</h2>
 
-          <div class="mt-10 max-w-2xl mx-auto sm:mt-12">
-            <p class="text-center text-base leading-relaxed text-muted-foreground sm:text-lg text-pretty">
-              When someone can't reach you, they often call the next name on Google. Reception is $49 a month. Save one client you'd have lost to voicemail, and you've paid for the rest of the year.
-            </p>
-            <p class="mt-6 text-center text-base leading-relaxed text-muted-foreground text-pretty">
-              Most solo professionals lose more than one caller a year. The first one you keep makes the math straightforward.
-            </p>
+            <div class="roi__body">
+              <p>
+                When someone can't reach you, they often call the next name on Google. Reception is $49 a month. Save one client you'd have lost to voicemail, and you've paid for the rest of the year.
+              </p>
+              <p>
+                Most solo professionals lose more than one caller a year. The first one you keep makes the math straightforward.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -957,7 +1451,7 @@
       <!-- Features -->
       <section id="features" class="section-y">
         <div class="page-shell page-shell--wide">
-          <h2 class="text-center text-foreground">
+          <h2 class="section-heading text-foreground">
             What you get
           </h2>
 
@@ -981,8 +1475,8 @@
       <!-- Pricing -->
       <section id="pricing" class="bg-card section-y">
         <div class="page-shell page-shell--wide">
-          <h2 class="text-center text-foreground">Pricing</h2>
-          <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-pretty text-muted-foreground sm:text-base">Choose a plan, then send us a message. We'll confirm details and set up Reception on your number.</p>
+          <h2 class="section-heading section-heading--center text-foreground">Pricing</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-pretty text-muted-foreground sm:text-base">Choose a plan, then send us a message. We'll confirm details and set up Reception on your number. <a href="#faq" class="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground">Common questions</a></p>
 
           <div class="mt-12 grid gap-6 sm:mt-16 md:grid-cols-3">
 
@@ -1120,6 +1614,36 @@
         </div>
       </section>
 
+      <!-- FAQ -->
+      <section id="faq" class="section-y" aria-labelledby="faq-heading">
+        <div class="page-shell page-shell--narrow">
+          <h2 id="faq-heading" class="section-heading section-heading--center text-foreground">Common questions</h2>
+
+          <dl class="faq-list">
+            <div class="faq-list__item">
+              <dt class="faq-list__q">Do my callers need WhatsApp?</dt>
+              <dd class="faq-list__a">Yes. The reply lands in WhatsApp, not as a text message. Most people already have it on their phone. If a caller does not use WhatsApp, they still see that you tried to reach them when you call back.</dd>
+            </div>
+            <div class="faq-list__item">
+              <dt class="faq-list__q">Do I need a new phone number?</dt>
+              <dd class="faq-list__a">No. Reception uses call forwarding on the number you already have. Your callers dial the same number they always have.</dd>
+            </div>
+            <div class="faq-list__item">
+              <dt class="faq-list__q">How long does setup take?</dt>
+              <dd class="faq-list__a">We handle the technical work. After you choose a plan, a short call is usually enough to connect forwarding and write your first messages. Most setups are done within a few days.</dd>
+            </div>
+            <div class="faq-list__item">
+              <dt class="faq-list__q">Does this work in my country?</dt>
+              <dd class="faq-list__a">It depends on your mobile carrier and whether call forwarding to our service is supported where you are. When you contact us, we check your number and country before you pay.</dd>
+            </div>
+            <div class="faq-list__item">
+              <dt class="faq-list__q">Can I change the message later?</dt>
+              <dd class="faq-list__a">Yes. Send us updated wording and we adjust your replies. You can also set different messages for business hours, evenings, and weekends.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
     </main>
 
     <!-- Footer -->
@@ -1135,6 +1659,7 @@
             <a href="#how-it-works" class="transition-colors hover:text-foreground">How it works</a>
             <a href="#features" class="transition-colors hover:text-foreground">What you get</a>
             <a href="#pricing" class="transition-colors hover:text-foreground">View pricing plans</a>
+            <a href="#faq" class="transition-colors hover:text-foreground">Common questions</a>
             <a href="https://argo-navis.net/#contact" class="transition-colors hover:text-foreground" rel="noopener noreferrer">Contact us</a>
           </nav>
         </div>
