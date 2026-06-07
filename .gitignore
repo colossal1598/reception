@@ -1,0 +1,9 @@
+.cursor/
+.impeccable/
+.agents/
+node_modules/
+product.md
+design.md
+contactform.astro
+plan.md
+prompt.txt

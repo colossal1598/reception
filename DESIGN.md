@@ -98,6 +98,8 @@ This system explicitly rejects generic SaaS landing pages (cream backgrounds, gr
 
 The primary accent is **spruce green** (hue 155°): dependable and local-trust, not SaaS navy or startup neon. Typography pairs **Zilla Slab** (display) with **Libre Franklin** (body) for editorial warmth without corporate coldness.
 
+**Hebrew (`/he/`):** **Frank Ruhl Libre** (display) + **Heebo** (body) — same slab-serif warmth + clean sans pairing, loaded only on `he/index.html`.
+
 **Key Characteristics:**
 
 - Serif display + humanist sans body; weight and scale carry hierarchy

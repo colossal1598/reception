@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- HE typography: Frank Ruhl Libre (display, slab serif warmth) + Heebo (body, clean sans). Mirrors EN Zilla Slab + Libre Franklin. -->
+<html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reception | WhatsApp reply when you miss a call</title>
-  <meta name="description" content="Reception sends a WhatsApp message from your number when you miss a call. For solo professionals who can't always pick up. Plans from $49/month.">
+  <title>Reception | תשובת WhatsApp כשלא ענית לשיחה</title>
+  <meta name="description" content="Reception שולח הודעת WhatsApp מהמספר שלך כשלא ענית לשיחה. לעצמאים שלא תמיד יכולים לענות. החל מ-$49 לחודש.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&family=Zilla+Slab:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@600;700&family=Heebo:wght@400;500;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -52,8 +53,8 @@
             sm: 'calc(var(--radius) * 0.6)',
           },
           fontFamily: {
-            sans: ['Libre Franklin', 'system-ui', 'sans-serif'],
-            display: ['Zilla Slab', 'Georgia', 'serif'],
+            sans: ['Heebo', 'system-ui', 'sans-serif'],
+            display: ['Frank Ruhl Libre', 'Georgia', 'serif'],
           },
         },
       },
@@ -83,8 +84,8 @@
       --ring: oklch(0.45 0.1 155);
       --hero-wash: oklch(0.965 0.022 155);
       --radius: 0.5rem;
-      --font-display: 'Zilla Slab', Georgia, serif;
-      --font-body: 'Libre Franklin', system-ui, sans-serif;
+      --font-display: 'Frank Ruhl Libre', Georgia, serif;
+      --font-body: 'Heebo', system-ui, sans-serif;
       --text-display: clamp(2.25rem, 5vw + 0.75rem, 4rem);
       --text-headline: clamp(2rem, 3vw + 1rem, 2.875rem);
       --text-title: 1.375rem;
@@ -707,7 +708,7 @@
       gap: var(--space-sm);
       font-size: var(--text-small);
       color: var(--muted-foreground);
-      text-align: left;
+      text-align: start;
       max-width: 22rem;
     }
 
@@ -1278,24 +1279,87 @@
       font-size: var(--text-small);
       color: var(--destructive);
     }
+
+    /* RTL: logical alignment and mockup tails */
+    [dir="rtl"] .hero__copy,
+    [dir="rtl"] .section-heading,
+    [dir="rtl"] .roi__pull,
+    [dir="rtl"] .demo-showcase__action {
+      text-align: start;
+    }
+
+    @media (min-width: 768px) {
+      [dir="rtl"] .hero__copy,
+      [dir="rtl"] .section-heading,
+      [dir="rtl"] .roi__pull,
+      [dir="rtl"] .demo-showcase__action {
+        text-align: start;
+      }
+    }
+
+    [dir="rtl"] .skip-link:focus {
+      left: auto;
+      right: var(--space-md);
+    }
+
+    [dir="rtl"] .site-header__signal-line {
+      background: linear-gradient(
+        270deg,
+        color-mix(in oklch, var(--muted-foreground) 35%, transparent),
+        var(--primary)
+      );
+    }
+
+    [dir="rtl"] .site-header__signal-line::after {
+      right: auto;
+      left: -0.1875rem;
+    }
+
+    [dir="rtl"] .hero-visual__bubble::before {
+      left: auto;
+      right: -0.375rem;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    [dir="rtl"] .hero-visual__bubble--first {
+      border-top-left-radius: 0.625rem;
+      border-top-right-radius: 0.125rem;
+    }
+
+    [dir="rtl"] .hero-visual__bubble--first::before {
+      right: auto;
+      left: -0.375rem;
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+
+    [dir="rtl"] .wa-mockup__bubble::before {
+      left: auto;
+      right: -0.375rem;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    [dir="rtl"] .wa-mockup__bubble {
+      border-top-left-radius: 0.625rem;
+      border-top-right-radius: 0.125rem;
+    }
   </style>
 </head>
 <body class="font-sans">
   <div class="min-h-screen bg-background">
 
-    <a href="#main-content" class="skip-link">Skip to content</a>
+    <a href="#main-content" class="skip-link">דלג לתוכן</a>
 
     <header class="site-header">
       <div class="site-header__bar">
         <div class="page-shell page-shell--wide">
           <div class="site-header__inner">
             <div class="site-header__brand-nav">
-              <a href="#" class="site-wordmark">Reception</a>
+              <a href="/he/" class="site-wordmark">Reception</a>
 
-              <nav class="site-nav" aria-label="Main">
-                <a href="#how-it-works">How it works</a>
-                <a href="#features">What you get</a>
-                <a href="#pricing">Pricing</a>
+              <nav class="site-nav" aria-label="ראשי">
+                <a href="/he/#how-it-works">איך זה עובד</a>
+                <a href="/he/#features">מה מקבלים</a>
+                <a href="/he/#pricing">מחירים</a>
               </nav>
             </div>
 
@@ -1312,10 +1376,10 @@
                 </span>
               </div>
 
-              <a href="#pricing" class="site-header__cta inline-flex h-11 shrink-0 items-center justify-center rounded-lg border border-transparent bg-primary px-4 text-sm font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
-                View pricing plans
+              <a href="/he/#pricing" class="site-header__cta inline-flex h-11 shrink-0 items-center justify-center rounded-lg border border-transparent bg-primary px-4 text-sm font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
+                לתוכניות ומחירים
               </a>
-              <button type="button" class="nav-toggle md:hidden" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Open menu">
+              <button type="button" class="nav-toggle md:hidden" id="nav-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="פתח תפריט">
                 <svg class="nav-toggle__icon nav-toggle__icon--open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                 </svg>
@@ -1328,11 +1392,11 @@
         </div>
       </div>
 
-      <nav class="site-nav-mobile md:hidden" id="nav-mobile" aria-label="Mobile" data-open="false">
-        <a href="#how-it-works">How it works</a>
-        <a href="#features">What you get</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#pricing" class="site-nav-mobile__cta">View pricing plans</a>
+      <nav class="site-nav-mobile md:hidden" id="nav-mobile" aria-label="נייד" data-open="false">
+        <a href="/he/#how-it-works">איך זה עובד</a>
+        <a href="/he/#features">מה מקבלים</a>
+        <a href="/he/#pricing">מחירים</a>
+        <a href="/he/#pricing" class="site-nav-mobile__cta">לתוכניות ומחירים</a>
       </nav>
     </header>
 
@@ -1344,20 +1408,20 @@
           <div class="hero__grid">
             <div class="hero__copy">
               <h1 class="text-balance text-foreground">
-                Stop losing clients to voicemail.
+                אל תאבד לקוחות בגלל תא קולי.
               </h1>
               <p class="hero__lead">
-                Miss a call, and your caller gets a WhatsApp message from your number within seconds. Written in your voice, sent while you're on the job or with a client.
+                פספסת שיחה? תוך שניות הלקוח מקבל הודעת WhatsApp מהמספר שלך. בניסוח שלך, בזמן שאתה בעבודה או עם לקוח.
               </p>
               <div class="hero__actions">
-                <a href="#pricing" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
-                  View pricing plans
+                <a href="/he/#pricing" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
+                  לתוכניות ומחירים
                 </a>
                 <div class="hero__reassurance">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
                   </svg>
-                  <span>Works with your existing number. No app to install. Cancel anytime.</span>
+                  <span dir="rtl">עובד עם המספר הקיים שלך. בלי אפליקציה. אפשר לבטל בכל רגע.</span>
                 </div>
               </div>
             </div>
@@ -1372,8 +1436,8 @@
                           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 3.75 18 6m0 0 2.25 2.25M18 6l2.25-2.25M18 6l-2.25 2.25m1.5 13.5c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 0 1 4.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.055.902-.417 1.173l-1.293.97a1.062 1.062 0 0 0-.38 1.21 12.035 12.035 0 0 0 7.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.062 1.062 0 0 1 1.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 0 1-2.25 2.25h-2.25Z"/>
                         </svg>
                       </div>
-                      <p class="hero-visual__call-label">Missed call</p>
-                      <p class="hero-visual__call-meta">While you're on the job</p>
+                      <p class="hero-visual__call-label">שיחה שלא נענתה</p>
+                      <p class="hero-visual__call-meta">בזמן שאתה בעבודה</p>
                     </div>
                   </div>
                 </div>
@@ -1381,7 +1445,7 @@
                 <div class="hero-visual__bridge">
                   <span class="hero-visual__bridge-line"></span>
                   <span class="hero-visual__bridge-dot"></span>
-                  <span>Within seconds</span>
+                  <span>תוך שניות</span>
                   <span class="hero-visual__bridge-dot"></span>
                   <span class="hero-visual__bridge-line"></span>
                 </div>
@@ -1389,11 +1453,11 @@
                 <div class="hero-visual__chat">
                   <div class="hero-visual__thread">
                     <blockquote class="hero-visual__bubble hero-visual__bubble--first">
-                      <cite class="hero-visual__sender hero-visual__sender--you">Your number</cite>
-                      <p>Sorry I missed your call. I'm on a job right now but I'll call you back as soon as I'm free.</p>
-                      <p>How can I help?</p>
+                      <cite class="hero-visual__sender hero-visual__sender--you">המספר שלך</cite>
+                      <p>סליחה, פספסתי את השיחה. אני בעבודה עכשיו, אחזור אליך ברגע שאשתחרר.</p>
+                      <p>איך אפשר לעזור?</p>
                       <div class="hero-visual__bubble-meta">
-                        <time datetime="14:14">2:14 PM</time>
+                        <time datetime="14:14">14:14</time>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" fill="none" aria-hidden="true">
                           <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z" fill="currentColor"/>
                         </svg>
@@ -1401,10 +1465,10 @@
                     </blockquote>
 
                     <blockquote class="hero-visual__bubble hero-visual__bubble--second">
-                      <cite class="hero-visual__sender hero-visual__sender--client">Possible client</cite>
-                      <p>Thanks for the message! This is what I need...</p>
+                      <cite class="hero-visual__sender hero-visual__sender--client">לקוח פוטנציאלי</cite>
+                      <p>תודה על ההודעה! זה מה שאני צריך...</p>
                       <div class="hero-visual__bubble-meta">
-                        <time datetime="14:16">2:16 PM</time>
+                        <time datetime="14:16">14:16</time>
                       </div>
                     </blockquote>
                   </div>
@@ -1418,28 +1482,28 @@
       <!-- How It Works -->
       <section id="how-it-works" class="bg-card section-y">
         <div class="page-shell page-shell--wide">
-          <h2 class="section-heading text-foreground">How it works</h2>
+          <h2 class="section-heading text-foreground">איך זה עובד</h2>
 
           <ol class="step-list max-w-4xl mx-auto">
             <li>
-              <span class="step-num">Step 1</span>
-              <h3 class="font-semibold text-foreground">You miss a call</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">You're in a meeting, on a job site, or with a client. The phone rings out.</p>
+              <span class="step-num">שלב 1</span>
+              <h3 class="font-semibold text-foreground">פספסת שיחה</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">אתה בפגישה, באתר עבודה, או עם לקוח. הטלפון מצלצל עד שנגמר.</p>
             </li>
             <li>
-              <span class="step-num">Step 2</span>
-              <h3 class="font-semibold text-foreground">They get your reply</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">Within seconds, they receive a WhatsApp message from your number. Something like: "Sorry I missed your call. I'm on a job right now but I'll call you back as soon as I'm free."</p>
+              <span class="step-num">שלב 2</span>
+              <h3 class="font-semibold text-foreground">הם מקבלים תשובה</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">תוך שניות מגיעה הודעת WhatsApp מהמספר שלך. משהו כמו: "סליחה, פספסתי את השיחה. אני בעבודה עכשיו, אחזור אליך ברגע שאשתחרר."</p>
             </li>
             <li>
-              <span class="step-num">Step 3</span>
-              <h3 class="font-semibold text-foreground">You follow up</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">They know you'll call back. You reply when you're free, and they're still waiting for you.</p>
+              <span class="step-num">שלב 3</span>
+              <h3 class="font-semibold text-foreground">אתה חוזר אליהם</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">הם יודעים שתחזור. אתה עונה כשמתפנה, והם עדיין מחכים לך.</p>
             </li>
           </ol>
 
           <p class="mt-12 text-center text-sm text-muted-foreground sm:mt-16">
-            Uses call forwarding on the number you already have. We handle the setup.
+            משתמשים בהעברת שיחות על המספר שכבר יש לך. אנחנו מטפלים בהגדרה.
           </p>
         </div>
       </section>
@@ -1454,15 +1518,15 @@
                   <div class="wa-mockup__topbar">
                     <div class="wa-mockup__avatar" aria-hidden="true">RP</div>
                     <div class="wa-mockup__contact">
-                      <div class="wa-mockup__name">Rivera Plumbing</div>
-                      <div class="wa-mockup__status">Business account</div>
+                      <div class="wa-mockup__name">אינסטלציית כהן</div>
+                      <div class="wa-mockup__status">חשבון עסקי</div>
                     </div>
                   </div>
                   <div class="wa-mockup__chat">
                     <blockquote class="wa-mockup__bubble">
-                      <p class="wa-mockup__message">Hi, sorry I missed your call. I'm on a job right now but I'll call you back as soon as I'm free. If you need to leave details, just reply here.</p>
+                      <p class="wa-mockup__message">היי, סליחה שפספסתי את השיחה. אני בעבודה עכשיו, אחזור אליך ברגע שאשתחרר. אם צריך להשאיר פרטים — פשוט תענה כאן.</p>
                       <div class="wa-mockup__meta">
-                        <time datetime="14:14">2:14 PM</time>
+                        <time datetime="14:14">14:14</time>
                         <svg class="wa-mockup__ticks" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" fill="none" aria-hidden="true">
                           <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z" fill="currentColor"/>
                         </svg>
@@ -1470,24 +1534,24 @@
                     </blockquote>
                   </div>
                 </div>
-                <figcaption class="demo-showcase__caption">What your caller sees on their phone</figcaption>
+                <figcaption class="demo-showcase__caption">מה שהמתקשר רואה בטלפון שלו</figcaption>
               </figure>
             </div>
 
             <div class="demo-showcase__action">
               <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
                 <h2 id="demo-heading" class="text-foreground">
-                  Call now and see what your callers get
+                  התקשר עכשיו וראה מה המתקשרים שלך מקבלים
                 </h2>
                 <p class="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base text-pretty">
-                  Call the demo number below. We'll let it ring out on purpose. Within seconds, you'll receive the same WhatsApp message your missed callers get.
+                  חייג למספר הדמו למטה. נניח לטלפון לצלצל בכוונה. תוך שניות תקבל את אותה הודעת WhatsApp שמקבלים מי שפספסת.
                 </p>
                 <div class="mt-8">
                   <a href="tel:+15551234567" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-2 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
                     </svg>
-                    Call demo: +1 (555) 123-4567
+                    התקשר לדמו: +1 (555) 123-4567
                   </a>
                 </div>
               </div>
@@ -1500,14 +1564,14 @@
       <section class="bg-card section-y">
         <div class="page-shell page-shell--wide">
           <div class="roi__layout">
-            <h2 class="roi__pull">One saved client covers the year</h2>
+            <h2 class="roi__pull">לקוח אחד ששמרת — מכסה את כל השנה</h2>
 
             <div class="roi__body">
               <p>
-                When someone can't reach you, they often call the next name on Google. Reception is $49 a month. Save one client you'd have lost to voicemail, and you've paid for the rest of the year.
+                כשמישהו לא מצליח להשיג אותך, הוא הרבה פעמים מתקשר לשם הבא בגוגל. Reception עולה $49 בחודש. שמרת לקוח אחד שהיה הולך לאיבוד בגלל תא קולי — וכיסית את שאר השנה.
               </p>
               <p>
-                Most solo professionals lose more than one caller a year. The first one you keep makes the math straightforward.
+                רוב העצמאים מאבדים יותר ממתקשר אחד בשנה. הראשון ששומרים — והחשבון מתחיל להסתדר.
               </p>
             </div>
           </div>
@@ -1518,21 +1582,21 @@
       <section id="features" class="section-y">
         <div class="page-shell page-shell--wide">
           <h2 class="section-heading text-foreground">
-            What you get
+            מה מקבלים
           </h2>
 
           <ul class="feature-list max-w-3xl mx-auto">
             <li>
-              <h3 class="font-semibold text-foreground">Business hours</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">Different WhatsApp replies for working hours, evenings, and weekends.</p>
+              <h3 class="font-semibold text-foreground">שעות פעילות</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">הודעות WhatsApp שונות לשעות עבודה, ערב וסופי שבוע.</p>
             </li>
             <li>
-              <h3 class="font-semibold text-foreground">Excluded numbers</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">Skip family, friends, and spam. Only business callers get the automatic reply.</p>
+              <h3 class="font-semibold text-foreground">מספרים שלא נכללים</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">משפחה, חברים וספאם — לא מקבלים תשובה אוטומטית. רק מתקשרים עסקיים.</p>
             </li>
             <li>
-              <h3 class="font-semibold text-foreground">We set it up</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">We write your messages and connect your number. After that, it runs without you touching it.</p>
+              <h3 class="font-semibold text-foreground">אנחנו מגדירים</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">כותבים את ההודעות ומחברים את המספר. אחר כך זה רץ בלי שתיגע.</p>
             </li>
           </ul>
         </div>
@@ -1541,8 +1605,8 @@
       <!-- Pricing -->
       <section id="pricing" class="bg-card section-y">
         <div class="page-shell page-shell--wide">
-          <h2 class="section-heading section-heading--center text-foreground">Pricing</h2>
-          <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-pretty text-muted-foreground sm:text-base">Choose a plan, then send us a message. We'll confirm details and set up Reception on your number. <a href="#faq" class="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground">Common questions</a></p>
+          <h2 class="section-heading section-heading--center text-foreground">מחירים</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-pretty text-muted-foreground sm:text-base">בוחרים תוכנית ושולחים לנו הודעה. נאשר פרטים ונגדיר Reception על המספר שלך. <a href="/he/#faq" class="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground">שאלות נפוצות</a></p>
 
           <div class="mt-12 grid gap-6 sm:mt-16 md:grid-cols-3">
 
@@ -1552,11 +1616,11 @@
                 <h3 class="font-display font-semibold text-foreground">Solo</h3>
               </div>
               <div class="mt-6 text-center">
-                <p class="text-sm text-muted-foreground">$99 setup fee (includes month 1)</p>
+                <p class="text-sm text-muted-foreground">$99 דמי הקמה (כולל חודש ראשון)</p>
                 <p class="plan-price">
-                  <span>then</span>
+                  <span>ואז</span>
                   <span class="plan-price__amount">$49</span>
-                  <span>per month</span>
+                  <span>לחודש</span>
                 </p>
               </div>
               <ul class="mt-6 flex-1 space-y-3">
@@ -1564,29 +1628,29 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">1 phone number</span>
+                  <span class="text-sm text-muted-foreground">מספר טלפון אחד</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Custom, personalized WhatsApp Message</span>
+                  <span class="text-sm text-muted-foreground">הודעת WhatsApp מותאמת אישית</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Business hours and after-hours messages</span>
+                  <span class="text-sm text-muted-foreground">הודעות לשעות עבודה ומחוץ לשעות</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Excluded numbers list</span>
+                  <span class="text-sm text-muted-foreground">רשימת מספרים שלא נכללים</span>
                 </li>
               </ul>
               <div class="mt-8">
-                <a href="?plan=solo#intake" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">Start Solo plan</a>
+                <a href="?plan=solo#intake" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">מתחילים עם Solo</a>
               </div>
             </div>
 
@@ -1596,11 +1660,11 @@
                 <h3 class="font-display font-semibold text-foreground">Multi-line</h3>
               </div>
               <div class="mt-6 text-center">
-                <p class="text-sm text-muted-foreground">$149 setup fee (includes month 1)</p>
+                <p class="text-sm text-muted-foreground">$149 דמי הקמה (כולל חודש ראשון)</p>
                 <p class="plan-price">
-                  <span>then</span>
+                  <span>ואז</span>
                   <span class="plan-price__amount">$89</span>
-                  <span>per month</span>
+                  <span>לחודש</span>
                 </p>
               </div>
               <ul class="mt-6 flex-1 space-y-3">
@@ -1608,23 +1672,23 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Up to 3 phone numbers</span>
+                  <span class="text-sm text-muted-foreground">עד 3 מספרי טלפון</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Everything in Solo</span>
+                  <span class="text-sm text-muted-foreground">הכל שב-Solo</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">A different message per number</span>
+                  <span class="text-sm text-muted-foreground">הודעה שונה לכל מספר</span>
                 </li>
               </ul>
               <div class="mt-8">
-                <a href="?plan=multi-line#intake" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">Start Multi-line plan</a>
+                <a href="?plan=multi-line#intake" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">מתחילים עם Multi-line</a>
               </div>
             </div>
 
@@ -1632,17 +1696,17 @@
             <div class="relative flex flex-col rounded-lg border border-primary/30 bg-primary/5 p-6">
               <div class="absolute -top-3 left-1/2 -translate-x-1/2">
                 <span class="inline-flex rounded-full border border-primary/30 bg-card px-3 py-1 text-xs font-medium text-primary">
-                  Recommended
+                  מומלץ
                 </span>
               </div>
               <div class="text-center">
                 <h3 class="font-display font-semibold text-foreground">Annual</h3>
-                <p class="mt-1 text-sm text-muted-foreground">Pay once, 14 months of service</p>
+                <p class="mt-1 text-sm text-muted-foreground">תשלום חד-פעמי, 14 חודשי שירות</p>
               </div>
               <div class="mt-6 text-center">
                 <p class="plan-price plan-price--stacked">
                   <span class="plan-price__amount">$790</span>
-                  <span class="plan-price__suffix">1st month included</span>
+                  <span class="plan-price__suffix">חודש ראשון כלול</span>
                 </p>
               </div>
               <ul class="mt-6 flex-1 space-y-3">
@@ -1650,29 +1714,29 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">1 phone number</span>
+                  <span class="text-sm text-muted-foreground">מספר טלפון אחד</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">Lowest cost per month</span>
+                  <span class="text-sm text-muted-foreground">המחיר החודשי הנמוך ביותר</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">$99 setup fee waived</span>
+                  <span class="text-sm text-muted-foreground">פטור מדמי הקמה ($99)</span>
                 </li>
                 <li class="flex items-start gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
-                  <span class="text-sm text-muted-foreground">2 extra months included</span>
+                  <span class="text-sm text-muted-foreground">2 חודשים נוספים בחינם</span>
                 </li>
               </ul>
               <div class="mt-8">
-                <a href="?plan=annual#intake" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-3 text-sm font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">Start Annual plan</a>
+                <a href="?plan=annual#intake" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-3 text-sm font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">מתחילים עם Annual</a>
               </div>
             </div>
 
@@ -1683,28 +1747,28 @@
       <!-- FAQ -->
       <section id="faq" class="section-y" aria-labelledby="faq-heading">
         <div class="page-shell page-shell--narrow">
-          <h2 id="faq-heading" class="section-heading section-heading--center text-foreground">Common questions</h2>
+          <h2 id="faq-heading" class="section-heading section-heading--center text-foreground">שאלות נפוצות</h2>
 
           <dl class="faq-list">
             <div class="faq-list__item">
-              <dt class="faq-list__q">Do my callers need WhatsApp?</dt>
-              <dd class="faq-list__a">Yes. The reply lands in WhatsApp, not as a text message. Most people already have it on their phone. If a caller does not use WhatsApp, they still see that you tried to reach them when you call back.</dd>
+              <dt class="faq-list__q">המתקשרים צריכים WhatsApp?</dt>
+              <dd class="faq-list__a">כן. התשובה מגיעה ב-WhatsApp, לא כ-SMS. לרוב זה כבר מותקן אצלם. מי שלא משתמש ב-WhatsApp — עדיין יראה שחזרת אליו כשתתקשר.</dd>
             </div>
             <div class="faq-list__item">
-              <dt class="faq-list__q">Do I need a new phone number?</dt>
-              <dd class="faq-list__a">No. Reception uses call forwarding on the number you already have. Your callers dial the same number they always have.</dd>
+              <dt class="faq-list__q">צריך מספר טלפון חדש?</dt>
+              <dd class="faq-list__a">לא. Reception עובד עם העברת שיחות על המספר שכבר יש לך. המתקשרים חייגים את אותו מספר כמו תמיד.</dd>
             </div>
             <div class="faq-list__item">
-              <dt class="faq-list__q">How long does setup take?</dt>
-              <dd class="faq-list__a">We handle the technical work. After you choose a plan, a short call is usually enough to connect forwarding and write your first messages. Most setups are done within a few days.</dd>
+              <dt class="faq-list__q">כמה זמן לוקחת ההגדרה?</dt>
+              <dd class="faq-list__a">אנחנו מטפלים בצד הטכני. אחרי שבוחרים תוכנית, שיחה קצרה בדרך כלל מספיקה לחיבור ההעברה וכתיבת ההודעות הראשונות. רוב ההגדרות מסתיימות תוך כמה ימים.</dd>
             </div>
             <div class="faq-list__item">
-              <dt class="faq-list__q">Does this work in my country?</dt>
-              <dd class="faq-list__a">It depends on your mobile carrier and whether call forwarding to our service is supported where you are. When you contact us, we check your number and country before you pay.</dd>
+              <dt class="faq-list__q">זה עובד במדינה שלי?</dt>
+              <dd class="faq-list__a">תלוי בחברת הסלולר ובתמיכה בהעברת שיחות לשירות שלנו. כשפונים אלינו — נבדוק את המספר והמדינה לפני שמשלמים.</dd>
             </div>
             <div class="faq-list__item">
-              <dt class="faq-list__q">Can I change the message later?</dt>
-              <dd class="faq-list__a">Yes. Send us updated wording and we adjust your replies. You can also set different messages for business hours, evenings, and weekends.</dd>
+              <dt class="faq-list__q">אפשר לשנות את ההודעה אחר כך?</dt>
+              <dd class="faq-list__a">כן. שולחים לנו ניסוח מעודכן ואנחנו מתאימים. אפשר גם הודעות שונות לשעות עבודה, ערב וסופי שבוע.</dd>
             </div>
           </dl>
         </div>
@@ -1713,63 +1777,33 @@
       <!-- Intake -->
       <section id="intake" class="bg-card section-y" aria-labelledby="intake-heading">
         <div class="page-shell page-shell--narrow">
-          <h2 id="intake-heading" class="section-heading text-foreground">Get started</h2>
-          <p class="mt-4 text-sm text-pretty text-muted-foreground sm:text-base">Tell us about your business. We'll confirm your plan, check your number, and set up Reception.</p>
+          <h2 id="intake-heading" class="section-heading text-foreground">מתחילים</h2>
+          <p class="mt-4 text-sm text-pretty text-muted-foreground sm:text-base">ספר לנו על העסק. נאשר את התוכנית, נבדוק את המספר ונגדיר Reception.</p>
 
           <form id="intake-form" class="mt-10 space-y-6" novalidate>
             <input type="hidden" name="source" value="reception-intake">
-            <input type="hidden" name="locale" value="en">
+            <input type="hidden" name="locale" value="he">
             <input type="hidden" id="plan-input" name="plan" value="not-sure-yet">
-            <input type="hidden" id="contact-method-input" name="contact_method" value="email">
+            <input type="hidden" name="contact_method" value="phone">
 
             <div class="intake-field">
-              <label for="name">Your name <span class="text-primary">*</span></label>
-              <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+              <label for="name">שם <span class="text-primary">*</span></label>
+              <input type="text" id="name" name="name" placeholder="השם שלך" required autocomplete="name">
             </div>
 
             <div class="intake-field">
-              <label for="business_type">Type of business <span class="text-primary">*</span></label>
-              <input type="text" id="business_type" name="business_type" placeholder="e.g. plumber, dentist, lawyer" required>
+              <label for="business_type">סוג העסק <span class="text-primary">*</span></label>
+              <input type="text" id="business_type" name="business_type" placeholder="למשל: שרברב, רופא שיניים, עורך דין" required>
             </div>
 
             <div class="intake-field">
-              <label for="email">Email <span class="text-primary">*</span></label>
+              <label for="email">אימייל <span class="text-primary">*</span></label>
               <input type="email" id="email" name="email" placeholder="you@company.com" required autocomplete="email">
             </div>
 
-            <div>
-              <p class="mb-2 block text-sm font-medium text-foreground">Preferred contact method</p>
-              <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                <button type="button" data-contact-method="email" class="contact-method-btn inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium" aria-pressed="true">
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="3" y="5" width="18" height="14" rx="2"/>
-                    <path d="M3 7l9 6 9-6"/>
-                  </svg>
-                  <span>Email</span>
-                </button>
-                <button type="button" data-contact-method="phone" class="contact-method-btn inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium" aria-pressed="false">
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6 19.8 19.8 0 0 1-2.9-8.6A2 2 0 0 1 4.2 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.8 2.6a2 2 0 0 1-.4 2l-1.2 1.2a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2-.4c.8.4 1.7.7 2.6.8A2 2 0 0 1 22 16.9z"/>
-                  </svg>
-                  <span>Phone</span>
-                </button>
-                <button type="button" data-contact-method="telegram" class="contact-method-btn inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium" aria-pressed="false">
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M21.5 4.6c.3-1.2-.5-1.7-1.5-1.3L3.5 9.6c-1.1.4-1.1 1 .2 1.4l4.2 1.3 9.7-6.1c.5-.3.9-.1.5.2l-7.9 7.1-.3 4.6c.4 0 .6-.2.9-.4l2.1-2 4.4 3.3c.8.4 1.4.2 1.6-.8l2.6-12.6z"/>
-                  </svg>
-                  <span>Telegram</span>
-                </button>
-                <button type="button" data-contact-method="whatsapp" class="contact-method-btn inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-medium" aria-pressed="false">
-                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M20 11.8a8 8 0 0 1-11.8 7L4 20l1.4-4A8 8 0 1 1 20 11.8zm-8-6.3a6.3 6.3 0 0 0-5.4 9.5l.2.3-.8 2.4 2.5-.8.2.1A6.3 6.3 0 1 0 12 5.5zm3.4 8c-.2-.1-1.3-.6-1.5-.7-.2-.1-.4-.1-.5.1-.1.2-.6.7-.7.8-.1.1-.3.1-.5 0a5.2 5.2 0 0 1-1.5-.9 5.8 5.8 0 0 1-1.1-1.3c-.1-.2 0-.3.1-.4l.3-.4.2-.3c.1-.1 0-.3 0-.4l-.7-1.6c-.2-.4-.3-.3-.5-.3h-.4c-.1 0-.4 0-.6.3s-.8.7-.8 1.8.8 2.1.9 2.2c.1.1 1.6 2.5 4 3.4.5.2.8.3 1.1.4.5.1 1 .1 1.4.1.4-.1 1.3-.5 1.5-1s.2-.9.1-1-.2-.2-.4-.3z"/>
-                  </svg>
-                  <span>WhatsApp</span>
-                </button>
-              </div>
-            </div>
-
-            <div id="contact-details-wrap" class="intake-field hidden">
-              <input type="text" id="contact-details-input" name="contact_details" placeholder="">
+            <div class="intake-field">
+              <label for="phone">טלפון <span class="text-primary">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="מספר טלפון (כולל קידומת)" required autocomplete="tel">
             </div>
 
             <div id="turnstile-widget" class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY_PLACEHOLDER" data-theme="auto" data-size="invisible" data-callback="__intakeTurnstileOk"></div>
@@ -1778,9 +1812,9 @@
 
             <div>
               <button type="submit" id="submit-btn" class="inline-flex h-11 shrink-0 items-center justify-center rounded-lg border border-transparent bg-primary px-8 text-sm font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50">
-                Send message
+                שליחת הודעה
               </button>
-              <p class="mt-3 text-sm text-muted-foreground">No pitch. We'll confirm details and next steps.</p>
+              <p class="mt-3 text-sm text-muted-foreground">בלי מכירה. נאשר פרטים ונמשיך משם.</p>
             </div>
           </form>
         </div>
@@ -1792,22 +1826,22 @@
     <footer class="border-t border-border bg-background footer-y">
       <div class="page-shell page-shell--wide">
         <div class="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
-          <div class="text-center sm:text-left">
+          <div class="text-center sm:text-start">
             <span class="font-display text-xl font-semibold tracking-tight text-foreground">Reception</span>
-            <p class="mt-1 text-sm text-muted-foreground">WhatsApp replies when you miss a call.</p>
+            <p class="mt-1 text-sm text-muted-foreground">תשובת WhatsApp כשלא ענית לשיחה.</p>
           </div>
 
-          <nav class="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground" aria-label="Footer">
-            <a href="#how-it-works" class="transition-colors hover:text-foreground">How it works</a>
-            <a href="#features" class="transition-colors hover:text-foreground">What you get</a>
-            <a href="#pricing" class="transition-colors hover:text-foreground">View pricing plans</a>
-            <a href="#faq" class="transition-colors hover:text-foreground">Common questions</a>
-            <a href="https://argo-navis.net/#contact" class="transition-colors hover:text-foreground" rel="noopener noreferrer">Contact us</a>
+          <nav class="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground" aria-label="תחתית">
+            <a href="/he/#how-it-works" class="transition-colors hover:text-foreground">איך זה עובד</a>
+            <a href="/he/#features" class="transition-colors hover:text-foreground">מה מקבלים</a>
+            <a href="/he/#pricing" class="transition-colors hover:text-foreground">לתוכניות ומחירים</a>
+            <a href="/he/#faq" class="transition-colors hover:text-foreground">שאלות נפוצות</a>
+            <a href="https://argo-navis.net/#contact" class="transition-colors hover:text-foreground" rel="noopener noreferrer">צור קשר</a>
           </nav>
         </div>
 
         <div class="mt-8 border-t border-border pt-6 text-center">
-          <p class="text-xs text-muted-foreground">&copy; 2026 <a href="https://argo-navis.net" class="transition-colors hover:text-foreground">argo-navis</a>. All rights reserved.</p>
+          <p class="text-xs text-muted-foreground">&copy; 2026 <a href="https://argo-navis.net" class="transition-colors hover:text-foreground">argo-navis</a>. כל הזכויות שמורות.</p>
         </div>
       </div>
     </footer>
@@ -1824,7 +1858,7 @@
 
       function setOpen(open) {
         toggle.setAttribute('aria-expanded', String(open));
-        toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        toggle.setAttribute('aria-label', open ? 'סגור תפריט' : 'פתח תפריט');
         panel.setAttribute('data-open', String(open));
       }
 
@@ -1859,22 +1893,12 @@
       var btn = document.getElementById('submit-btn');
       var errorBox = document.getElementById('form-error');
       var planInput = document.getElementById('plan-input');
-      var contactMethodInput = document.getElementById('contact-method-input');
-      var contactMethodButtons = form.querySelectorAll('.contact-method-btn');
-      var contactDetailsWrap = document.getElementById('contact-details-wrap');
-      var contactDetailsInput = document.getElementById('contact-details-input');
       var submitLabel = btn.textContent;
       var validPlans = ['solo', 'multi-line', 'annual', 'not-sure-yet'];
       var turnstileEl = document.getElementById('turnstile-widget');
       var turnstileSiteKey = turnstileEl ? turnstileEl.getAttribute('data-sitekey') : '';
       var turnstileRequired = Boolean(turnstileSiteKey && turnstileSiteKey.indexOf('PLACEHOLDER') === -1);
       var intakePending = null;
-
-      var contactDetailsPlaceholders = {
-        phone: 'Your phone number (with country code)',
-        telegram: 'Your Telegram @username',
-        whatsapp: 'Your WhatsApp number (with country code)'
-      };
 
       var params = new URLSearchParams(window.location.search);
       var planParam = params.get('plan');
@@ -1890,35 +1914,6 @@
           });
         }
       }
-
-      function applyContactMethodState(method) {
-        if (!contactDetailsWrap || !contactDetailsInput) return;
-
-        var needsDetails = method !== 'email';
-        contactDetailsWrap.classList.toggle('hidden', !needsDetails);
-        contactDetailsInput.required = needsDetails;
-        contactDetailsInput.placeholder = contactDetailsPlaceholders[method] || '';
-        if (!needsDetails) {
-          contactDetailsInput.value = '';
-        }
-      }
-
-      applyContactMethodState(contactMethodInput ? contactMethodInput.value : 'email');
-
-      contactMethodButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-          var method = button.getAttribute('data-contact-method');
-          if (!method || !contactMethodInput) return;
-
-          contactMethodInput.value = method;
-          applyContactMethodState(method);
-
-          contactMethodButtons.forEach(function (btnEl) {
-            btnEl.setAttribute('aria-pressed', 'false');
-          });
-          button.setAttribute('aria-pressed', 'true');
-        });
-      });
 
       function resetTurnstile() {
         var turnstileApi = window.turnstile;
@@ -1957,14 +1952,14 @@
           .then(function (result) {
             intakePending = null;
             if (result.ok) {
-              window.location = '/thank-you';
+              window.location = '/he/thank-you';
               return;
             }
-            showError(result.json.error || 'Something went wrong. Please try again.');
+            showError(result.json.error || 'משהו השתבש. נסה שוב.');
           })
           .catch(function () {
             intakePending = null;
-            showError('Network error — please try again.');
+            showError('שגיאת רשת — נסה שוב.');
           });
       }
 
@@ -1978,7 +1973,7 @@
         event.preventDefault();
 
         btn.disabled = true;
-        btn.textContent = 'Sending…';
+        btn.textContent = 'שולח…';
         errorBox.classList.add('hidden');
         errorBox.textContent = '';
 
@@ -1986,27 +1981,26 @@
         var name = String(formData.get('name') || '').trim();
         var businessType = String(formData.get('business_type') || '').trim();
         var email = String(formData.get('email') || '').trim();
-        var selectedMethod = String(formData.get('contact_method') || 'email');
-        var contactDetails = String(formData.get('contact_details') || '').trim();
+        var phone = String(formData.get('phone') || '').trim();
         var token = formData.get('cf-turnstile-response');
 
         if (!name) {
-          showError('Please enter your name.');
+          showError('נא להזין שם.');
           return;
         }
 
         if (!businessType) {
-          showError('Please tell us what type of business you run.');
+          showError('נא לציין את סוג העסק.');
           return;
         }
 
         if (!email || !isValidEmail(email)) {
-          showError('Please enter a valid email address.');
+          showError('נא להזין כתובת אימייל תקינה.');
           return;
         }
 
-        if (selectedMethod !== 'email' && !contactDetails) {
-          showError('Contact details are required for this contact method.');
+        if (!phone) {
+          showError('נא להזין מספר טלפון.');
           return;
         }
 
@@ -2025,7 +2019,7 @@
         intakePending = payload;
         var turnstileApi = window.turnstile;
         if (!turnstileApi || typeof turnstileApi.execute !== 'function') {
-          showError('Please complete the verification challenge.');
+          showError('נא להשלים את אימות האבטחה.');
           intakePending = null;
           return;
         }
