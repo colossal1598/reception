@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Reception</title>
+  <meta name="description" content="How Argo Online collects, uses, and protects your information when you use the Reception website and service.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&family=Zilla+Slab:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: 'var(--background)',
+            foreground: 'var(--foreground)',
+            primary: {
+              DEFAULT: 'var(--primary)',
+              foreground: 'var(--primary-foreground)',
+            },
+            muted: {
+              DEFAULT: 'var(--muted)',
+              foreground: 'var(--muted-foreground)',
+            },
+            border: 'var(--border)',
+            ring: 'var(--ring)',
+          },
+          borderRadius: {
+            lg: 'var(--radius)',
+          },
+          fontFamily: {
+            sans: ['Libre Franklin', 'system-ui', 'sans-serif'],
+            display: ['Zilla Slab', 'Georgia', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: oklch(0.98 0.004 155);
+      --foreground: oklch(0.22 0.03 155);
+      --primary: oklch(0.38 0.11 155);
+      --primary-foreground: oklch(0.99 0 0);
+      --muted: oklch(0.94 0.014 155);
+      --muted-foreground: oklch(0.42 0.035 155);
+      --border: oklch(0.88 0.018 155);
+      --ring: oklch(0.45 0.1 155);
+      --radius: 0.5rem;
+      --font-display: 'Zilla Slab', Georgia, serif;
+      --font-body: 'Libre Franklin', system-ui, sans-serif;
+      --header-height: 4rem;
+      --space-section-x: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    html {
+      font-family: var(--font-body);
+      background: var(--background);
+    }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 42rem;
+      margin-inline: auto;
+      padding-inline: var(--space-section-x);
+    }
+
+    .site-header {
+      border-bottom: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+      background-color: var(--background);
+    }
+
+    .site-header__bar {
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .site-wordmark {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .lang-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 0.15s ease-out;
+    }
+
+    .lang-link:hover {
+      color: var(--foreground);
+    }
+
+    .legal-doc h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .legal-doc h2 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .legal-doc p,
+    .legal-doc li {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--muted-foreground);
+    }
+
+    .legal-doc p {
+      margin-top: 0.75rem;
+    }
+
+    .legal-doc ul {
+      margin-top: 0.75rem;
+      padding-left: 1.25rem;
+      list-style: disc;
+    }
+
+    .legal-doc li + li {
+      margin-top: 0.375rem;
+    }
+
+    .legal-doc a {
+      color: var(--foreground);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease-out;
+    }
+
+    .legal-doc a:hover {
+      color: var(--primary);
+    }
+
+    .legal-doc .callout {
+      margin-top: 1rem;
+      padding: 1rem 1.125rem;
+      border-radius: var(--radius);
+      border: 1px solid color-mix(in oklch, var(--primary) 25%, var(--border));
+      background: color-mix(in oklch, var(--primary) 6%, var(--background));
+    }
+
+    .legal-doc .callout p {
+      color: var(--foreground);
+      margin-top: 0;
+    }
+
+    .legal-meta {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="site-header">
+    <div class="site-header__bar">
+      <div class="page-shell">
+        <div class="site-header__inner">
+          <a href="/" class="site-wordmark">Reception</a>
+          <a href="/he/privacy.html" class="lang-link" hreflang="he">עברית</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 py-12 sm:py-16">
+    <article class="page-shell legal-doc">
+      <h1>Privacy Policy</h1>
+      <p class="legal-meta">Last updated: June 8, 2026</p>
+
+      <p>This Privacy Policy explains how Argo Online Ltd. ("<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>") collects, uses, and protects personal information when you visit the Reception website or use the Reception service.</p>
+
+      <h2>1. Who we are</h2>
+      <p>Reception is a product operated by Argo Online Ltd. (Hebrew: ארגו אונליין), company number 205967649.</p>
+      <ul>
+        <li>Address: 65 Ha-Lah Guardia Street, Tel Aviv, Israel</li>
+        <li>Privacy contact: <a href="mailto:reception@argo-navis.net">reception@argo-navis.net</a></li>
+      </ul>
+
+      <h2>2. Scope</h2>
+      <p>This policy applies to:</p>
+      <ul>
+        <li>the Reception website at reception.argo-navis.net (including the intake form), and</li>
+        <li>the Reception subscription service (automated WhatsApp replies when you miss a call).</li>
+      </ul>
+
+      <h2>3. Information we collect</h2>
+      <p><strong>From the website and intake form</strong></p>
+      <ul>
+        <li>Name</li>
+        <li>Email address</li>
+        <li>Phone number (required on the Hebrew form; optional on the English form depending on your contact preference)</li>
+        <li>Business type</li>
+        <li>Selected plan</li>
+        <li>Preferred contact method and contact details (English form)</li>
+        <li>Language/locale and submission timestamp</li>
+      </ul>
+      <p><strong>When operating the Reception service</strong></p>
+      <ul>
+        <li>Your phone number and call-forwarding configuration</li>
+        <li>A caller's phone number, only as needed to send an automated WhatsApp reply on your behalf</li>
+        <li>Basic technical logs related to message delivery (for example, whether a message was sent)</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>What we do not collect or access.</strong> We do not access your WhatsApp account, chat history, or message content beyond the automated replies sent through Reception. We do not read conversations between you and your callers on WhatsApp.</p>
+      </div>
+
+      <h2>4. How we use information</h2>
+      <p>We use personal information to:</p>
+      <ul>
+        <li>respond to your inquiry and set up your account</li>
+        <li>provide, maintain, and improve the Reception service</li>
+        <li>send automated WhatsApp messages to callers when you miss a call</li>
+        <li>communicate with you about your subscription, billing, and support</li>
+        <li>prevent fraud, abuse, and unauthorized submissions (including Cloudflare Turnstile verification)</li>
+        <li>comply with legal obligations</li>
+      </ul>
+
+      <h2>5. Legal basis</h2>
+      <p>We process personal information based on your consent, our contractual need to provide the service, and our legitimate interests in operating and securing Reception.</p>
+      <p>If you are in Israel, this processing is subject to the Privacy Protection Law, 5741-1981. If you are in the European Economic Area or United Kingdom, you may have additional rights under applicable data protection laws, including the GDPR.</p>
+
+      <h2>6. Sharing with third parties</h2>
+      <p>We do not sell your personal information. We share information only as needed to run Reception, including with:</p>
+      <ul>
+        <li><strong>Cloudflare</strong> — website hosting, security, and Turnstile bot protection</li>
+        <li><strong>Automation and customer-management tools</strong> — to process form submissions and manage onboarding (for example, workflow automation systems connected to our intake process)</li>
+        <li><strong>Telephony and messaging providers</strong> — to route missed calls and deliver WhatsApp messages; these providers process data on our instructions and do not receive access to your WhatsApp chat history</li>
+        <li><strong>Professional advisers or authorities</strong> — when required by law or to protect our rights</li>
+      </ul>
+      <p>We may update the list of subprocessors as our stack evolves. Material changes will be reflected in an updated version of this policy.</p>
+
+      <h2>7. Data retention</h2>
+      <ul>
+        <li><strong>Intake form data:</strong> up to 24 months from submission, or until you ask us to delete it, whichever comes first.</li>
+        <li><strong>Customer account data:</strong> for the duration of your subscription and a reasonable period afterward for billing, support, and legal compliance.</li>
+        <li><strong>Caller phone numbers:</strong> only for as long as needed to send the automated reply and confirm delivery; we do not maintain a long-term archive of caller chat history.</li>
+      </ul>
+
+      <h2>8. Security</h2>
+      <p>We use reasonable technical and organizational measures to protect personal information. No method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
+
+      <h2>9. Your rights</h2>
+      <p>Depending on where you live, you may have the right to access, correct, delete, or restrict processing of your personal information, or to object to certain processing.</p>
+      <p>To exercise these rights, contact <a href="mailto:reception@argo-navis.net">reception@argo-navis.net</a>. We will respond within a reasonable time and as required by applicable law.</p>
+      <p>If you are in Israel, you may also contact the Privacy Protection Authority. If you are in the EEA or UK, you may lodge a complaint with your local supervisory authority.</p>
+
+      <h2>10. Children</h2>
+      <p>Reception is a business service and is not directed at children under 18. We do not knowingly collect personal information from children.</p>
+
+      <h2>11. International transfers</h2>
+      <p>Your information may be processed in Israel and in other countries where our service providers operate. We take steps to ensure appropriate safeguards when data is transferred across borders.</p>
+
+      <h2>12. Changes to this policy</h2>
+      <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top will change when we do. Continued use of the website or service after an update means you accept the revised policy.</p>
+
+      <h2>13. Contact</h2>
+      <p>Questions about this policy or your personal information:</p>
+      <ul>
+        <li>Email: <a href="mailto:reception@argo-navis.net">reception@argo-navis.net</a></li>
+        <li>Mail: Argo Online Ltd., 65 Ha-Lah Guardia Street, Tel Aviv, Israel</li>
+      </ul>
+      <p class="mt-8 text-sm">See also our <a href="/terms.html">Terms of Service</a>.</p>
+    </article>
+  </main>
+
+  <footer class="border-t border-border py-8">
+    <div class="page-shell text-center">
+      <nav class="mb-4 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground" aria-label="Footer">
+        <a href="/" class="transition-colors hover:text-foreground">Home</a>
+        <a href="/privacy.html" class="transition-colors hover:text-foreground">Privacy</a>
+        <a href="/terms.html" class="transition-colors hover:text-foreground">Terms</a>
+      </nav>
+      <p class="text-xs text-muted-foreground">&copy; 2026 <a href="https://argo-navis.net" class="transition-colors hover:text-foreground">argo-navis</a>. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

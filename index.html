@@ -123,6 +123,12 @@
       scroll-padding-top: calc(var(--header-height) + var(--space-md));
     }
 
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
     body {
       background: var(--background);
       color: var(--foreground);
@@ -313,6 +319,10 @@
 
     .page-shell--narrow {
       max-width: 48rem;
+    }
+
+    .page-shell--hero {
+      max-width: 68rem;
     }
 
     .page-shell--demo {
@@ -645,14 +655,14 @@
 
     @media (min-width: 768px) {
       .hero__grid {
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-        gap: clamp(2rem, 5vw, var(--space-4xl));
+        grid-template-columns: minmax(0, 1.025fr) minmax(0, 0.975fr);
+        gap: clamp(1.5rem, 3.75vw, 3rem);
       }
     }
 
     @media (min-width: 960px) {
       .hero__grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
       }
     }
 
@@ -1227,7 +1237,8 @@
       color: var(--foreground);
     }
 
-    .intake-field input {
+    .intake-field input,
+    .intake-field select {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -1238,11 +1249,21 @@
       transition: border-color 0.15s, box-shadow 0.15s;
     }
 
+    .intake-field select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      padding-right: 2.25rem;
+    }
+
     .intake-field input::placeholder {
       color: var(--muted-foreground);
     }
 
-    .intake-field input:focus {
+    .intake-field input:focus,
+    .intake-field select:focus {
       outline: none;
       border-color: var(--ring);
       box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent);
@@ -1277,6 +1298,39 @@
       display: block;
       font-size: var(--text-small);
       color: var(--destructive);
+    }
+
+    .intake-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+    }
+
+    .intake-consent input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      accent-color: var(--primary);
+    }
+
+    .intake-consent label {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--muted-foreground);
+    }
+
+    .intake-consent label a {
+      color: var(--foreground);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .demo-consent-note {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--muted-foreground);
     }
   </style>
 </head>
@@ -1340,7 +1394,7 @@
 
       <!-- Hero -->
       <section class="hero bg-hero-wash section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <div class="hero__grid">
             <div class="hero__copy">
               <h1 class="text-balance text-foreground">
@@ -1417,7 +1471,7 @@
 
       <!-- How It Works -->
       <section id="how-it-works" class="bg-card section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <h2 class="section-heading text-foreground">How it works</h2>
 
           <ol class="step-list max-w-4xl mx-auto">
@@ -1446,7 +1500,7 @@
 
       <!-- Try It Live -->
       <section class="section-y" aria-labelledby="demo-heading">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <div class="demo-showcase">
             <div class="demo-showcase__proof">
               <figure class="wa-mockup">
@@ -1489,6 +1543,7 @@
                     </svg>
                     Call demo: +1 (555) 123-4567
                   </a>
+                  <p class="demo-consent-note">By calling this number, you agree to receive a one-time demo WhatsApp message to the number you're calling from.</p>
                 </div>
               </div>
             </div>
@@ -1498,7 +1553,7 @@
 
       <!-- ROI -->
       <section class="bg-card section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <div class="roi__layout">
             <h2 class="roi__pull">One saved client covers the year</h2>
 
@@ -1516,7 +1571,7 @@
 
       <!-- Features -->
       <section id="features" class="section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <h2 class="section-heading text-foreground">
             What you get
           </h2>
@@ -1540,7 +1595,7 @@
 
       <!-- Pricing -->
       <section id="pricing" class="bg-card section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <h2 class="section-heading section-heading--center text-foreground">Pricing</h2>
           <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-pretty text-muted-foreground sm:text-base">Choose a plan, then send us a message. We'll confirm details and set up Reception on your number. <a href="#faq" class="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground">Common questions</a></p>
 
@@ -1719,12 +1774,21 @@
           <form id="intake-form" class="mt-10 space-y-6" novalidate>
             <input type="hidden" name="source" value="reception-intake">
             <input type="hidden" name="locale" value="en">
-            <input type="hidden" id="plan-input" name="plan" value="not-sure-yet">
             <input type="hidden" id="contact-method-input" name="contact_method" value="email">
 
             <div class="intake-field">
               <label for="name">Your name <span class="text-primary">*</span></label>
               <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+            </div>
+
+            <div class="intake-field">
+              <label for="plan-input">Plan</label>
+              <select id="plan-input" name="plan">
+                <option value="not-sure-yet" selected>Not sure yet</option>
+                <option value="solo">Solo</option>
+                <option value="multi-line">Multi-line</option>
+                <option value="annual">Annual</option>
+              </select>
             </div>
 
             <div class="intake-field">
@@ -1772,6 +1836,11 @@
               <input type="text" id="contact-details-input" name="contact_details" placeholder="">
             </div>
 
+            <div class="intake-consent">
+              <input type="checkbox" id="contact-consent" name="contact_consent" value="yes" required>
+              <label for="contact-consent">I agree to be contacted about Reception and accept the <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.</label>
+            </div>
+
             <div id="turnstile-widget" class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY_PLACEHOLDER" data-theme="auto" data-size="invisible" data-callback="__intakeTurnstileOk"></div>
 
             <p id="form-error" class="hidden" role="alert"></p>
@@ -1803,6 +1872,8 @@
             <a href="#pricing" class="transition-colors hover:text-foreground">View pricing plans</a>
             <a href="#faq" class="transition-colors hover:text-foreground">Common questions</a>
             <a href="https://argo-navis.net/#contact" class="transition-colors hover:text-foreground" rel="noopener noreferrer">Contact us</a>
+            <a href="/privacy.html" class="transition-colors hover:text-foreground">Privacy</a>
+            <a href="/terms.html" class="transition-colors hover:text-foreground">Terms</a>
           </nav>
         </div>
 
@@ -2007,6 +2078,12 @@
 
         if (selectedMethod !== 'email' && !contactDetails) {
           showError('Contact details are required for this contact method.');
+          return;
+        }
+
+        var consentInput = document.getElementById('contact-consent');
+        if (!consentInput || !consentInput.checked) {
+          showError('Please accept contact consent to continue.');
           return;
         }
 

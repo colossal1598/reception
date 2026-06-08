@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reception | תשובת WhatsApp כשלא ענית לשיחה</title>
+  <title>Reception | הודעה חוזרת בוואטסאפ</title>
   <meta name="description" content="Reception שולח הודעת WhatsApp מהמספר שלך כשלא ענית לשיחה. לעצמאים שלא תמיד יכולים לענות. החל מ-$49 לחודש.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,6 +122,12 @@
       font-family: var(--font-body);
       background: var(--background);
       scroll-padding-top: calc(var(--header-height) + var(--space-md));
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
     }
 
     body {
@@ -314,6 +320,10 @@
 
     .page-shell--narrow {
       max-width: 48rem;
+    }
+
+    .page-shell--hero {
+      max-width: 68rem;
     }
 
     .page-shell--demo {
@@ -646,14 +656,14 @@
 
     @media (min-width: 768px) {
       .hero__grid {
-        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-        gap: clamp(2rem, 5vw, var(--space-4xl));
+        grid-template-columns: minmax(0, 1.025fr) minmax(0, 0.975fr);
+        gap: clamp(1.5rem, 3.75vw, 3rem);
       }
     }
 
     @media (min-width: 960px) {
       .hero__grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
       }
     }
 
@@ -1228,7 +1238,8 @@
       color: var(--foreground);
     }
 
-    .intake-field input {
+    .intake-field input,
+    .intake-field select {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -1239,11 +1250,21 @@
       transition: border-color 0.15s, box-shadow 0.15s;
     }
 
+    .intake-field select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: left 0.75rem center;
+      padding-left: 2.25rem;
+    }
+
     .intake-field input::placeholder {
       color: var(--muted-foreground);
     }
 
-    .intake-field input:focus {
+    .intake-field input:focus,
+    .intake-field select:focus {
       outline: none;
       border-color: var(--ring);
       box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent);
@@ -1278,6 +1299,39 @@
       display: block;
       font-size: var(--text-small);
       color: var(--destructive);
+    }
+
+    .intake-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+    }
+
+    .intake-consent input[type="checkbox"] {
+      margin-top: 0.2rem;
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      accent-color: var(--primary);
+    }
+
+    .intake-consent label {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--muted-foreground);
+    }
+
+    .intake-consent label a {
+      color: var(--foreground);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .demo-consent-note {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--muted-foreground);
     }
 
     /* RTL: logical alignment and mockup tails */
@@ -1404,14 +1458,14 @@
 
       <!-- Hero -->
       <section class="hero bg-hero-wash section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <div class="hero__grid">
             <div class="hero__copy">
               <h1 class="text-balance text-foreground">
                 אל תאבד לקוחות בגלל תא קולי.
               </h1>
               <p class="hero__lead">
-                פספסת שיחה? תוך שניות הלקוח מקבל הודעת WhatsApp מהמספר שלך. בניסוח שלך, בזמן שאתה בעבודה או עם לקוח.
+                פספסת שיחה? תוך שניות הלקוח מקבל הודעת WhatsApp מהמספר שלך. בניסוח שלך, בזמן שאתה בעבודה, עם לקוח, או בכלל בחופש.
               </p>
               <div class="hero__actions">
                 <a href="/he/#pricing" class="inline-flex h-11 w-full shrink-0 items-center justify-center gap-1.5 rounded-lg border border-transparent bg-primary px-8 text-base font-medium text-primary-foreground whitespace-nowrap transition-colors outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 sm:w-auto">
@@ -1481,19 +1535,19 @@
 
       <!-- How It Works -->
       <section id="how-it-works" class="bg-card section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <h2 class="section-heading text-foreground">איך זה עובד</h2>
 
           <ol class="step-list max-w-4xl mx-auto">
             <li>
               <span class="step-num">שלב 1</span>
               <h3 class="font-semibold text-foreground">פספסת שיחה</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">אתה בפגישה, באתר עבודה, או עם לקוח. הטלפון מצלצל עד שנגמר.</p>
+              <p class="text-sm leading-relaxed text-muted-foreground">אתה בפגישה, באתר עבודה, או עם המשפחה. הטלפון מצלצל עד שנגמר.</p>
             </li>
             <li>
               <span class="step-num">שלב 2</span>
               <h3 class="font-semibold text-foreground">הם מקבלים תשובה</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">תוך שניות מגיעה הודעת WhatsApp מהמספר שלך. משהו כמו: "סליחה, פספסתי את השיחה. אני בעבודה עכשיו, אחזור אליך ברגע שאשתחרר."</p>
+              <p class="text-sm leading-relaxed text-muted-foreground">תוך שניות מגיעה הודעת WhatsApp מהמספר שלך. משהו כמו: "סליחה, פספסתי את השיחה. אני בעבודה עכשיו, אחזור אליך ברגע שאסיים."</p>
             </li>
             <li>
               <span class="step-num">שלב 3</span>
@@ -1503,14 +1557,14 @@
           </ol>
 
           <p class="mt-12 text-center text-sm text-muted-foreground sm:mt-16">
-            משתמשים בהעברת שיחות על המספר שכבר יש לך. אנחנו מטפלים בהגדרה.
+            משתמשים בהעברת שיחות על המספר שכבר יש לך. אנחנו מטפלים בהתקנה וכל מה שצריך.
           </p>
         </div>
       </section>
 
       <!-- Try It Live -->
       <section class="section-y" aria-labelledby="demo-heading">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <div class="demo-showcase">
             <div class="demo-showcase__proof">
               <figure class="wa-mockup">
@@ -1524,7 +1578,7 @@
                   </div>
                   <div class="wa-mockup__chat">
                     <blockquote class="wa-mockup__bubble">
-                      <p class="wa-mockup__message">היי, סליחה שפספסתי את השיחה. אני בעבודה עכשיו, אחזור אליך ברגע שאשתחרר. אם צריך להשאיר פרטים — פשוט תענה כאן.</p>
+                      <p class="wa-mockup__message">היי, סליחה שפספסתי את השיחה. אני בעבודה עכשיו, אחזור אליך ברגע שאסיים. אתה יכול לכתוב לי כאן בינתיים מה אתה צריך.</p>
                       <div class="wa-mockup__meta">
                         <time datetime="14:14">14:14</time>
                         <svg class="wa-mockup__ticks" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" fill="none" aria-hidden="true">
@@ -1541,7 +1595,7 @@
             <div class="demo-showcase__action">
               <div class="rounded-lg border border-border bg-card p-6 sm:p-8">
                 <h2 id="demo-heading" class="text-foreground">
-                  התקשר עכשיו וראה מה המתקשרים שלך מקבלים
+                  התקשר עכשיו ותראה בדיוק איך זה יכול לעבוד בשבילך.
                 </h2>
                 <p class="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base text-pretty">
                   חייג למספר הדמו למטה. נניח לטלפון לצלצל בכוונה. תוך שניות תקבל את אותה הודעת WhatsApp שמקבלים מי שפספסת.
@@ -1553,6 +1607,7 @@
                     </svg>
                     התקשר לדמו: +1 (555) 123-4567
                   </a>
+                  <p class="demo-consent-note">בהתקשרות למספר הדמו, את/ה מאשר/ת שנשלח אליך הודעת WhatsApp חד-פעמית למספר שממנו התקשרת.</p>
                 </div>
               </div>
             </div>
@@ -1562,13 +1617,13 @@
 
       <!-- ROI -->
       <section class="bg-card section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <div class="roi__layout">
             <h2 class="roi__pull">לקוח אחד ששמרת — מכסה את כל השנה</h2>
 
             <div class="roi__body">
               <p>
-                כשמישהו לא מצליח להשיג אותך, הוא הרבה פעמים מתקשר לשם הבא בגוגל. Reception עולה $49 בחודש. שמרת לקוח אחד שהיה הולך לאיבוד בגלל תא קולי — וכיסית את שאר השנה.
+                כשמישהו לא מצליח להשיג אותך, הוא פשוט יתקשר לשם הבא בגוגל. Reception עולה $49 בחודש. שמרת לקוח אחד שהיה הולך לאיבוד בגלל תא קולי — וכיסית את שאר השנה.
               </p>
               <p>
                 רוב העצמאים מאבדים יותר ממתקשר אחד בשנה. הראשון ששומרים — והחשבון מתחיל להסתדר.
@@ -1580,7 +1635,7 @@
 
       <!-- Features -->
       <section id="features" class="section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <h2 class="section-heading text-foreground">
             מה מקבלים
           </h2>
@@ -1588,15 +1643,19 @@
           <ul class="feature-list max-w-3xl mx-auto">
             <li>
               <h3 class="font-semibold text-foreground">שעות פעילות</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">הודעות WhatsApp שונות לשעות עבודה, ערב וסופי שבוע.</p>
+              <p class="text-sm leading-relaxed text-muted-foreground">הודעות WhatsApp שונות לשעות עבודה, ערב וחופשות.</p>
             </li>
             <li>
               <h3 class="font-semibold text-foreground">מספרים שלא נכללים</h3>
-              <p class="text-sm leading-relaxed text-muted-foreground">משפחה, חברים וספאם — לא מקבלים תשובה אוטומטית. רק מתקשרים עסקיים.</p>
+              <p class="text-sm leading-relaxed text-muted-foreground">עובדים, חברים, כל מי שתרצו — לא מקבלים תשובה אוטומטית. רק מתקשרים עסקיים.</p>
             </li>
             <li>
               <h3 class="font-semibold text-foreground">אנחנו מגדירים</h3>
               <p class="text-sm leading-relaxed text-muted-foreground">כותבים את ההודעות ומחברים את המספר. אחר כך זה רץ בלי שתיגע.</p>
+            </li>
+            <li>
+              <h3 class="font-semibold text-foreground">שליטה מלאה</h3>
+              <p class="text-sm leading-relaxed text-muted-foreground">בוט בוואטסאפ לשירותכם כדי לעדכן ולשנות כל מה שצריך.</p>
             </li>
           </ul>
         </div>
@@ -1604,7 +1663,7 @@
 
       <!-- Pricing -->
       <section id="pricing" class="bg-card section-y">
-        <div class="page-shell page-shell--wide">
+        <div class="page-shell page-shell--hero">
           <h2 class="section-heading section-heading--center text-foreground">מחירים</h2>
           <p class="mx-auto mt-4 max-w-2xl text-center text-sm text-pretty text-muted-foreground sm:text-base">בוחרים תוכנית ושולחים לנו הודעה. נאשר פרטים ונגדיר Reception על המספר שלך. <a href="/he/#faq" class="text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground">שאלות נפוצות</a></p>
 
@@ -1783,12 +1842,21 @@
           <form id="intake-form" class="mt-10 space-y-6" novalidate>
             <input type="hidden" name="source" value="reception-intake">
             <input type="hidden" name="locale" value="he">
-            <input type="hidden" id="plan-input" name="plan" value="not-sure-yet">
             <input type="hidden" name="contact_method" value="phone">
 
             <div class="intake-field">
               <label for="name">שם <span class="text-primary">*</span></label>
               <input type="text" id="name" name="name" placeholder="השם שלך" required autocomplete="name">
+            </div>
+
+            <div class="intake-field">
+              <label for="plan-input">תוכנית</label>
+              <select id="plan-input" name="plan">
+                <option value="not-sure-yet" selected>עדיין לא בטוח/ה</option>
+                <option value="solo">Solo</option>
+                <option value="multi-line">Multi-line</option>
+                <option value="annual">Annual</option>
+              </select>
             </div>
 
             <div class="intake-field">
@@ -1804,6 +1872,11 @@
             <div class="intake-field">
               <label for="phone">טלפון <span class="text-primary">*</span></label>
               <input type="tel" id="phone" name="phone" placeholder="מספר טלפון (כולל קידומת)" required autocomplete="tel">
+            </div>
+
+            <div class="intake-consent">
+              <input type="checkbox" id="contact-consent" name="contact_consent" value="yes" required>
+              <label for="contact-consent">אני מאשר/ת שייצרו איתי קשר בנוגע ל-Reception ומסכים/ה ל<a href="/he/privacy.html">מדיניות הפרטיות</a> ול<a href="/he/terms.html">תנאי השימוש</a>.</label>
             </div>
 
             <div id="turnstile-widget" class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY_PLACEHOLDER" data-theme="auto" data-size="invisible" data-callback="__intakeTurnstileOk"></div>
@@ -1837,6 +1910,8 @@
             <a href="/he/#pricing" class="transition-colors hover:text-foreground">לתוכניות ומחירים</a>
             <a href="/he/#faq" class="transition-colors hover:text-foreground">שאלות נפוצות</a>
             <a href="https://argo-navis.net/#contact" class="transition-colors hover:text-foreground" rel="noopener noreferrer">צור קשר</a>
+            <a href="/he/privacy.html" class="transition-colors hover:text-foreground">מדיניות פרטיות</a>
+            <a href="/he/terms.html" class="transition-colors hover:text-foreground">תנאי שימוש</a>
           </nav>
         </div>
 
@@ -2001,6 +2076,12 @@
 
         if (!phone) {
           showError('נא להזין מספר טלפון.');
+          return;
+        }
+
+        var consentInput = document.getElementById('contact-consent');
+        if (!consentInput || !consentInput.checked) {
+          showError('נא לאשר את הסכמתך ליצירת קשר.');
           return;
         }
 

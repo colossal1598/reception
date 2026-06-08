@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תנאי שימוש | Reception</title>
+  <meta name="description" content="תנאים המסדירים את השימוש שלך באתר ובשירות המנוי Reception המופעל על ידי ארגו אונליין.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@600;700&family=Heebo:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: 'var(--background)',
+            foreground: 'var(--foreground)',
+            primary: {
+              DEFAULT: 'var(--primary)',
+              foreground: 'var(--primary-foreground)',
+            },
+            muted: {
+              DEFAULT: 'var(--muted)',
+              foreground: 'var(--muted-foreground)',
+            },
+            border: 'var(--border)',
+            ring: 'var(--ring)',
+          },
+          borderRadius: {
+            lg: 'var(--radius)',
+          },
+          fontFamily: {
+            sans: ['Heebo', 'system-ui', 'sans-serif'],
+            display: ['Frank Ruhl Libre', 'Georgia', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --background: oklch(0.98 0.004 155);
+      --foreground: oklch(0.22 0.03 155);
+      --primary: oklch(0.38 0.11 155);
+      --primary-foreground: oklch(0.99 0 0);
+      --muted: oklch(0.94 0.014 155);
+      --muted-foreground: oklch(0.42 0.035 155);
+      --border: oklch(0.88 0.018 155);
+      --ring: oklch(0.45 0.1 155);
+      --radius: 0.5rem;
+      --font-display: 'Frank Ruhl Libre', Georgia, serif;
+      --font-body: 'Heebo', system-ui, sans-serif;
+      --header-height: 4rem;
+      --space-section-x: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    html {
+      font-family: var(--font-body);
+      background: var(--background);
+    }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+    }
+
+    .page-shell {
+      width: 100%;
+      max-width: 42rem;
+      margin-inline: auto;
+      padding-inline: var(--space-section-x);
+    }
+
+    .site-header {
+      border-bottom: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+      background-color: var(--background);
+    }
+
+    .site-header__bar {
+      min-height: var(--header-height);
+      display: flex;
+      align-items: center;
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .site-wordmark {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .lang-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 0.15s ease-out;
+    }
+
+    .lang-link:hover {
+      color: var(--foreground);
+    }
+
+    .legal-doc h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .legal-doc h2 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    .legal-doc p,
+    .legal-doc li {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--muted-foreground);
+    }
+
+    .legal-doc p {
+      margin-top: 0.75rem;
+    }
+
+    .legal-doc ul {
+      margin-top: 0.75rem;
+      padding-right: 1.25rem;
+      list-style: disc;
+    }
+
+    .legal-doc li + li {
+      margin-top: 0.375rem;
+    }
+
+    .legal-doc a {
+      color: var(--foreground);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease-out;
+    }
+
+    .legal-doc a:hover {
+      color: var(--primary);
+    }
+
+    .legal-doc .callout {
+      margin-top: 1rem;
+      padding: 1rem 1.125rem;
+      border-radius: var(--radius);
+      border: 1px solid color-mix(in oklch, var(--primary) 25%, var(--border));
+      background: color-mix(in oklch, var(--primary) 6%, var(--background));
+    }
+
+    .legal-doc .callout p {
+      color: var(--foreground);
+      margin-top: 0;
+    }
+
+    .legal-meta {
+      margin-top: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="site-header">
+    <div class="site-header__bar">
+      <div class="page-shell">
+        <div class="site-header__inner">
+          <a href="/he/" class="site-wordmark">Reception</a>
+          <a href="/terms.html" class="lang-link" hreflang="en">English</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 py-12 sm:py-16">
+    <article class="page-shell legal-doc">
+      <h1>תנאי שימוש</h1>
+      <p class="legal-meta">עודכן לאחרונה: 8 ביוני 2026</p>
+
+      <p>תנאי שימוש אלה ("<strong>התנאים</strong>") מסדירים את הגישה שלך לאתר Reception ואת השימוש בשירות המנוי Reception. Reception מופעל על ידי ארגו אונליין בע"מ, ח.פ. 205967649 ("<strong>אנחנו</strong>").</p>
+      <p>בשימוש באתר או בהרשמה ל-Reception, אתה מסכים לתנאים אלה ול<a href="/he/privacy.html">מדיניות הפרטיות</a> שלנו. אם אינך מסכים, אל תשתמש בשירות.</p>
+
+      <h2>1. השירות</h2>
+      <p>Reception עוזר לעצמאים ולעסקים קטנים להגיב כשלא הצליחו לענות לשיחת טלפון. כאשר העברת שיחות מופעלת על המספר שלך, Reception יכול לשלוח הודעת WhatsApp אוטומטית מהמספר שלך למתקשרים שלא הצלחת להשיג.</p>
+      <p>התכונות עשויות לכלול ניסוח הודעה מותאם, הודעות נפרדות לשעות פעילות ולאחר שעות, מספרי טלפון מרובים בתוכניות מתקדמות יותר, ורשימת מספרים מוחרגים. התכונות המדויקות תלויות בתוכנית שבחרת.</p>
+
+      <h2>2. זכאות והקמה</h2>
+      <ul>
+        <li>עליך להיות בן 18 לפחות ולהיות מוסמך לחייב את העסק שאתה מייצג.</li>
+        <li>לפני התשלום, אנחנו מאשרים שמספר הטלפון והמדינה שלך תומכים בהעברת השיחות הנדרשת.</li>
+        <li>אתה אחראי להפעלה ולתחזוקה של העברת שיחות אצל ספק הסלולר שלך.</li>
+        <li>ההקמה מתבצעת על ידינו לאחר שבחרת תוכנית ומסרת את הפרטים הנדרשים.</li>
+      </ul>
+
+      <h2>3. תוכניות ומחירים</h2>
+      <p>התוכניות הנוכחיות (USD):</p>
+      <ul>
+        <li><strong>Solo:</strong> דמי הקמה חד-פעמיים $99 (כוללים חודש ראשון), לאחר מכן $49 לחודש — מספר טלפון אחד</li>
+        <li><strong>Multi-line:</strong> דמי הקמה חד-פעמיים $149 (כוללים חודש ראשון), לאחר מכן $89 לחודש — עד 3 מספרי טלפון</li>
+        <li><strong>Annual:</strong> תשלום חד-פעמי $790 — כולל חודש ראשון ועוד 2 חודשים (14 חודשי שירות); פטור מדמי הקמה; מספר טלפון אחד</li>
+      </ul>
+      <p>המחירים מוצגים בדולר אמריקאי אלא אם הסכמנו אחרת בכתב. מיסים, מכסים וחיובי ספק הסלולר הם באחריותך, ככל שחלים.</p>
+      <p>ייתכן שנשנה מחירים למנויים חדשים או לחידושים, בהודעה סבירה מראש. שינויי מחיר אינם משפיעים על תקופת מנוי שנתי בתשלום מראש פעיל עד לחידוש.</p>
+
+      <h2>4. תשלום</h2>
+      <p>אמצעי התשלום ולוח החיוב יאושרו במהלך תהליך ההקמה. אלא אם צוין אחרת, תוכניות חודשיות מתחדשות אוטומטית בכל תקופת חיוב עד לביטול.</p>
+      <p>אם התשלום נכשל, ייתכן שנשעה את השירות לאחר הודעה והזדמנות סבירה לעדכן את פרטי התשלום.</p>
+
+      <h2>5. ביטול והחזרים</h2>
+      <ul>
+        <li><strong>תוכניות חודשיות:</strong> ניתן לבטל בכל עת. הביטול נכנס לתוקף בסוף תקופת החיוב ששולמה. אין החזר עבור תקופה שכבר החלה.</li>
+        <li><strong>דמי הקמה:</strong> דמי הקמה חד-פעמיים אינם מוחזרים לאחר שהחל עבודת ההקמה.</li>
+        <li><strong>תוכנית שנתית:</strong> דמי השנה אינם מוחזרים לאחר תחילת השירות, אלא אם נדרש אחרת על פי דין.</li>
+      </ul>
+      <p>לביטול, פנה ל-<a href="mailto:reception@argo-navis.net">reception@argo-navis.net</a>.</p>
+
+      <h2>6. שימוש מותר</h2>
+      <p>אתה מתחייב שלא להשתמש ב-Reception כדי:</p>
+      <ul>
+        <li>לשלוח ספאם, שיווק לא מבוקש או הודעות מטעות</li>
+        <li>להפר חוק או זכויות צד שלישי</li>
+        <li>להעביר תוכן פוגעני, פוגע או בלתי חוקי</li>
+        <li>להפריע לשירות או לנצל לרעה מערכות קשורות</li>
+      </ul>
+      <p>אתה אחראי באופן בלעדי לתוכן ההודעות הנשלחות מהמספר שלך, כולל עמידה בתנאי WhatsApp ובדיני תקשורת החלים.</p>
+
+      <h2>7. שירותי צד שלישי</h2>
+      <p>Reception תלוי בשירותים שאינם בשליטתנו, כולל ספק הסלולר שלך, תשתיות טלפוניה ו-WhatsApp (מופעל על ידי Meta). אין לנו קשר ל-Meta או ל-WhatsApp.</p>
+      <p>תמיכת ספק הסלולר בהעברת שיחות משתנה לפי מדינה ותוכנית. מסירת WhatsApp אינה מובטחת לכל מתקשר. תקלות או שינויי מדיניות של צדדים שלישיים עשויים להשפיע על השירות.</p>
+
+      <div class="callout">
+        <p><strong>פרטיות מתקשרים.</strong> Reception שולח רק תשובות אוטומטיות. אין לנו גישה להיסטוריית הצ'אטים שלך ב-WhatsApp ואיננו קוראים שיחות בינך לבין המתקשרים שלך.</p>
+      </div>
+
+      <h2>8. קניין רוחני</h2>
+      <p>Reception, האתר, המיתוג והטכנולוגיה הבסיסית שייכים לארגו אונליין בע"מ או לבעלי הרישיון שלה. אתה מקבל זכות מוגבלת ולא בלעדית להשתמש בשירות לצורכי העסק שלך במהלך מנוי פעיל.</p>
+      <p>אתה שומר על הבעלות בתוכן העסקי שלך ובניסוח ההודעות המותאם. אתה מעניק לנו הרשאה להשתמש בתוכן זה אך ורק לצורך מתן השירות.</p>
+
+      <h2>9. כתב ויתור</h2>
+      <p>השירות מסופק "כמות שהוא" ו"כפי שזמין". במידה המרבית המותרת על פי דין, אנחנו מסירים כל אחריות, מפורשת או משתמעת, לרבות סחירות, התאמה למטרה מסוימת ואי-הפרה.</p>
+      <p>איננו מתחייבים שכל שיחה שלא נענתה תגרום לשליחת הודעה, שכל הודעה תימסר, או שהשירות יהיה רציף וללא תקלות.</p>
+
+      <h2>10. הגבלת אחריות</h2>
+      <p>במידה המרבית המותרת על פי דין, לא נהיה אחראים לנזקים עקיפים, מקריים, מיוחדים, תוצאתיים או עונשיים, או לאובדן רווחים, עסק או מוניטין.</p>
+      <p>סך אחריותנו הכוללת לכל טענה הנובעת מתנאים אלה או מהשירות מוגבל לסכום ששילמת לנו עבור Reception ב-12 החודשים שקדמו לאירוע שגרם לטענה.</p>
+      <p>בחלק מהמדינות אין אפשרות להגביל אחריות מסוימת; במקרים כאלה, אחריותנו מוגבלת למידה המרבית המותרת על פי דין.</p>
+
+      <h2>11. שיפוי</h2>
+      <p>אתה מתחייב לשפות ולפצות אותנו על תביעות, נזקים והוצאות (כולל שכר טרחת עו"ד סביר) הנובעים מהשימוש שלך בשירות, מתוכן ההודעות שלך או מהפרת תנאים אלה.</p>
+
+      <h2>12. השעיה וסיום</h2>
+      <p>ייתכן שנשעה או נסיים גישה אם הפרת תנאים אלה, לא שילמת, או אם המשך השירות יוצר סיכון משפטי או אבטחתי. נמסור הודעה כאשר זה סביר.</p>
+      <p>סעיפים שמטבעם אמורים לשרוד סיום (כולל התחייבויות תשלום, כתבי ויתור, הגבלת אחריות ושיפוי) ימשיכו לחול.</p>
+
+      <h2>13. שינויים בתנאים</h2>
+      <p>ייתכן שנעדכן תנאים אלה מעת לעת. נפרסם את הגרסה המעודכנת בעמוד זה ונעדכן את תאריך "עודכן לאחרונה". שינויים מהותיים עשויים להימסר גם באימייל. המשך שימוש לאחר מועד התחולה מהווה הסכמה.</p>
+
+      <h2>14. דין וסמכות שיפוט</h2>
+      <p>תנאים אלה כפופים לדיני מדינת ישראל, ללא התחשבות בכללי ברירת הדין. סמכות השיפוט הבלעדית נתונה לבתי המשפט המוסמכים בתל אביב-יפו.</p>
+      <p>אם אתה ניגש ל-Reception מחוץ לישראל, אתה מסכים שדין ישראל וסמכות שיפוט ישראלית יחולו במידה המותרת על פי הגנות צרכן מקומיות מחייבות.</p>
+
+      <h2>15. יצירת קשר</h2>
+      <ul>
+        <li>אימייל: <a href="mailto:reception@argo-navis.net">reception@argo-navis.net</a></li>
+        <li>דואר: ארגו אונליין בע"מ, לה גארדיה 65, תל אביב</li>
+      </ul>
+      <p class="mt-8 text-sm">ראה גם את <a href="/he/privacy.html">מדיניות הפרטיות</a> שלנו.</p>
+    </article>
+  </main>
+
+  <footer class="border-t border-border py-8">
+    <div class="page-shell text-center">
+      <nav class="mb-4 flex flex-wrap justify-center gap-4 text-sm text-muted-foreground" aria-label="תחתית">
+        <a href="/he/" class="transition-colors hover:text-foreground">דף הבית</a>
+        <a href="/he/privacy.html" class="transition-colors hover:text-foreground">מדיניות פרטיות</a>
+        <a href="/he/terms.html" class="transition-colors hover:text-foreground">תנאי שימוש</a>
+      </nav>
+      <p class="text-xs text-muted-foreground">&copy; 2026 <a href="https://argo-navis.net" class="transition-colors hover:text-foreground">argo-navis</a>. כל הזכויות שמורות.</p>
+    </div>
+  </footer>
+</body>
+</html>
