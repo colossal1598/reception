@@ -1841,7 +1841,7 @@
               <label for="contact-consent">I agree to be contacted about Reception and accept the <a href="/privacy.html">Privacy Policy</a> and <a href="/terms.html">Terms of Service</a>.</label>
             </div>
 
-            <div id="turnstile-widget" class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY_PLACEHOLDER" data-theme="auto" data-size="invisible" data-callback="__intakeTurnstileOk"></div>
+            <div id="turnstile-widget"></div>
 
             <p id="form-error" class="hidden" role="alert"></p>
 
@@ -1936,9 +1936,8 @@
       var contactDetailsInput = document.getElementById('contact-details-input');
       var submitLabel = btn.textContent;
       var validPlans = ['solo', 'multi-line', 'annual', 'not-sure-yet'];
-      var turnstileEl = document.getElementById('turnstile-widget');
-      var turnstileSiteKey = turnstileEl ? turnstileEl.getAttribute('data-sitekey') : '';
-      var turnstileRequired = Boolean(turnstileSiteKey && turnstileSiteKey.indexOf('PLACEHOLDER') === -1);
+      var turnstileRequired = false;
+      var turnstileWidgetId = null;
       var intakePending = null;
 
       var contactDetailsPlaceholders = {
@@ -1993,9 +1992,37 @@
 
       function resetTurnstile() {
         var turnstileApi = window.turnstile;
-        if (turnstileApi && typeof turnstileApi.reset === 'function') {
-          turnstileApi.reset();
+        if (turnstileApi && typeof turnstileApi.reset === 'function' && turnstileWidgetId !== null) {
+          turnstileApi.reset(turnstileWidgetId);
         }
+      }
+
+      function initTurnstile() {
+        var turnstileApi = window.turnstile;
+        if (!turnstileApi || typeof turnstileApi.render !== 'function') return;
+
+        fetch('/api/turnstile-config')
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (!data.siteKey) return;
+
+            turnstileRequired = true;
+            turnstileWidgetId = turnstileApi.render('#turnstile-widget', {
+              sitekey: data.siteKey,
+              theme: 'auto',
+              size: 'invisible',
+              callback: '__intakeTurnstileOk',
+              'error-callback': '__intakeTurnstileError',
+              'expired-callback': '__intakeTurnstileExpired'
+            });
+          })
+          .catch(function () {});
+      }
+
+      if (window.turnstile) {
+        initTurnstile();
+      } else {
+        window.addEventListener('load', initTurnstile);
       }
 
       function showError(message) {
@@ -2043,6 +2070,16 @@
         if (intakePending) {
           postIntake(intakePending, token);
         }
+      };
+
+      window.__intakeTurnstileError = function () {
+        if (!intakePending) return;
+        intakePending = null;
+        showError('Verification failed. Please try again.');
+      };
+
+      window.__intakeTurnstileExpired = function () {
+        resetTurnstile();
       };
 
       form.addEventListener('submit', function (event) {
@@ -2101,13 +2138,13 @@
 
         intakePending = payload;
         var turnstileApi = window.turnstile;
-        if (!turnstileApi || typeof turnstileApi.execute !== 'function') {
+        if (!turnstileApi || typeof turnstileApi.execute !== 'function' || turnstileWidgetId === null) {
           showError('Please complete the verification challenge.');
           intakePending = null;
           return;
         }
 
-        turnstileApi.execute('#turnstile-widget');
+        turnstileApi.execute(turnstileWidgetId);
       });
     })();
   </script>
