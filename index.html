@@ -1885,7 +1885,7 @@
 
   </div>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
 
   <script>
     (function () {
@@ -1938,6 +1938,7 @@
       var validPlans = ['solo', 'multi-line', 'annual', 'not-sure-yet'];
       var turnstileRequired = false;
       var turnstileWidgetId = null;
+      var turnstileToken = null;
       var intakePending = null;
 
       var contactDetailsPlaceholders = {
@@ -1997,33 +1998,37 @@
         }
       }
 
-      function initTurnstile() {
+      function mountTurnstile(siteKey) {
         var turnstileApi = window.turnstile;
         if (!turnstileApi || typeof turnstileApi.render !== 'function') return;
 
+        turnstileApi.ready(function () {
+          turnstileWidgetId = turnstileApi.render('#turnstile-widget', {
+            sitekey: siteKey,
+            theme: 'auto',
+            callback: function (token) { window.__intakeTurnstileOk(token); },
+            'error-callback': function () { window.__intakeTurnstileError(); },
+            'expired-callback': function () { window.__intakeTurnstileExpired(); }
+          });
+        });
+      }
+
+      function initTurnstile() {
         fetch('/api/turnstile-config')
           .then(function (res) { return res.json(); })
           .then(function (data) {
             if (!data.siteKey) return;
-
             turnstileRequired = true;
-            turnstileWidgetId = turnstileApi.render('#turnstile-widget', {
-              sitekey: data.siteKey,
-              theme: 'auto',
-              size: 'invisible',
-              callback: '__intakeTurnstileOk',
-              'error-callback': '__intakeTurnstileError',
-              'expired-callback': '__intakeTurnstileExpired'
-            });
+            if (window.turnstile) {
+              mountTurnstile(data.siteKey);
+            } else {
+              window.addEventListener('load', function () { mountTurnstile(data.siteKey); });
+            }
           })
           .catch(function () {});
       }
 
-      if (window.turnstile) {
-        initTurnstile();
-      } else {
-        window.addEventListener('load', initTurnstile);
-      }
+      initTurnstile();
 
       function showError(message) {
         errorBox.textContent = message;
@@ -2067,6 +2072,7 @@
       }
 
       window.__intakeTurnstileOk = function (token) {
+        turnstileToken = token;
         if (intakePending) {
           postIntake(intakePending, token);
         }
@@ -2079,6 +2085,7 @@
       };
 
       window.__intakeTurnstileExpired = function () {
+        turnstileToken = null;
         resetTurnstile();
       };
 
@@ -2096,7 +2103,10 @@
         var email = String(formData.get('email') || '').trim();
         var selectedMethod = String(formData.get('contact_method') || 'email');
         var contactDetails = String(formData.get('contact_details') || '').trim();
-        var token = formData.get('cf-turnstile-response');
+        var token = turnstileToken || formData.get('cf-turnstile-response');
+        if (!token && turnstileWidgetId !== null && window.turnstile) {
+          token = window.turnstile.getResponse(turnstileWidgetId);
+        }
 
         if (!name) {
           showError('Please enter your name.');
@@ -2138,13 +2148,19 @@
 
         intakePending = payload;
         var turnstileApi = window.turnstile;
-        if (!turnstileApi || typeof turnstileApi.execute !== 'function' || turnstileWidgetId === null) {
+        if (!turnstileApi || turnstileWidgetId === null) {
           showError('Please complete the verification challenge.');
           intakePending = null;
           return;
         }
 
-        turnstileApi.execute(turnstileWidgetId);
+        if (typeof turnstileApi.execute === 'function') {
+          turnstileApi.execute(turnstileWidgetId);
+          return;
+        }
+
+        intakePending = null;
+        showError('Please complete the verification challenge.');
       });
     })();
   </script>
