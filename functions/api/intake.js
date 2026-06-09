@@ -1,4 +1,4 @@
-const DEFAULT_N8N_WEBHOOK_URL =
+const N8N_WEBHOOK_URL =
 
   "https://automation.sababim.co.il/webhook/reception-form";
 
@@ -176,7 +176,7 @@ export async function onRequestPost(context) {
 
 
 
-  const webhookUrl = env.N8N_WEBHOOK_URL || DEFAULT_N8N_WEBHOOK_URL;
+  const webhookUrl = resolveWebhookUrl(env.N8N_WEBHOOK_URL);
 
 
 
@@ -229,6 +229,18 @@ export async function onRequestPost(context) {
 }
 
 
+
+function resolveWebhookUrl(configuredUrl) {
+  if (
+    typeof configuredUrl === "string" &&
+    configuredUrl.startsWith("https://") &&
+    !configuredUrl.includes("webhook-test")
+  ) {
+    return configuredUrl;
+  }
+
+  return N8N_WEBHOOK_URL;
+}
 
 function json(data, status) {
 
