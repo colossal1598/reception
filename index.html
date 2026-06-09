@@ -1932,15 +1932,6 @@
       var contactDetailsInput = document.getElementById('contact-details-input');
       var submitLabel = btn.textContent;
       var validPlans = ['solo', 'multi-line', 'annual', 'not-sure-yet'];
-      var turnstileRequired = false;
-      var turnstileWidgetId = null;
-      var turnstileToken = null;
-      var turnstileSiteKey = null;
-      var turnstileScriptReady = false;
-      var turnstileMounted = false;
-      var intakePending = null;
-      var turnstileExecuteTimer = null;
-
       var contactDetailsPlaceholders = {
         phone: 'Your phone number (with country code)',
         telegram: 'Your Telegram @username',
@@ -1991,107 +1982,18 @@
         });
       });
 
-      function clearTurnstileExecuteTimer() {
-        if (turnstileExecuteTimer) {
-          clearTimeout(turnstileExecuteTimer);
-          turnstileExecuteTimer = null;
-        }
-      }
-
-      function resetTurnstile() {
-        var turnstileApi = window.turnstile;
-        if (turnstileApi && typeof turnstileApi.reset === 'function' && turnstileWidgetId !== null) {
-          turnstileApi.reset(turnstileWidgetId);
-        }
-      }
-
-      function onTurnstileToken(token) {
-        turnstileToken = token;
-        if (intakePending) {
-          clearTurnstileExecuteTimer();
-          postIntake(intakePending, token);
-        }
-      }
-
-      function maybeMountTurnstile() {
-        if (!turnstileSiteKey || !turnstileScriptReady || turnstileMounted) return;
-
-        var turnstileApi = window.turnstile;
-        if (!turnstileApi || typeof turnstileApi.render !== 'function') return;
-
-        turnstileApi.ready(function () {
-          if (turnstileMounted) return;
-
-          turnstileWidgetId = turnstileApi.render('#turnstile-widget', {
-            sitekey: turnstileSiteKey,
-            theme: 'auto',
-            size: 'flexible',
-            callback: onTurnstileToken,
-            'error-callback': function () {
-              if (!intakePending) return;
-              intakePending = null;
-              clearTurnstileExecuteTimer();
-              showError('Verification failed. Please try again.');
-            },
-            'expired-callback': function () {
-              turnstileToken = null;
-              resetTurnstile();
-            }
-          });
-
-          turnstileMounted = turnstileWidgetId !== null && turnstileWidgetId !== undefined;
-        });
-      }
-
-      window.__onTurnstileScriptLoad = function () {
-        turnstileScriptReady = true;
-        maybeMountTurnstile();
-      };
-
-      if (window.turnstile) {
-        turnstileScriptReady = true;
-      }
-
-      fetch('/api/turnstile-config')
-        .then(function (res) { return res.json(); })
-        .then(function (data) {
-          if (!data.siteKey) return;
-          turnstileRequired = true;
-          turnstileSiteKey = data.siteKey;
-          maybeMountTurnstile();
-        })
-        .catch(function () {});
-
-      function getTurnstileToken(formData) {
-        if (turnstileToken) return turnstileToken;
-
-        var fromForm = formData.get('cf-turnstile-response');
-        if (fromForm) return fromForm;
-
-        if (turnstileWidgetId !== null && window.turnstile && typeof window.turnstile.getResponse === 'function') {
-          return window.turnstile.getResponse(turnstileWidgetId) || null;
-        }
-
-        return null;
-      }
-
       function showError(message) {
         errorBox.textContent = message;
         errorBox.classList.remove('hidden');
         btn.disabled = false;
         btn.textContent = submitLabel;
-        resetTurnstile();
       }
 
       function isValidEmail(value) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       }
 
-      function postIntake(payload, token) {
-        if (token) {
-          payload['cf-turnstile-response'] = token;
-        }
-
+      function postIntake(payload) {
         fetch('/api/intake', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -2103,7 +2005,6 @@
             });
           })
           .then(function (result) {
-            intakePending = null;
             if (result.ok) {
               window.location = '/thank-you';
               return;
@@ -2111,7 +2012,6 @@
             showError(result.json.error || 'Something went wrong. Please try again.');
           })
           .catch(function () {
-            intakePending = null;
             showError('Network error — please try again.');
           });
       }
@@ -2156,40 +2056,7 @@
           return;
         }
 
-        var payload = Object.fromEntries(formData);
-
-        if (!turnstileRequired) {
-          postIntake(payload);
-          return;
-        }
-
-        var token = getTurnstileToken(formData);
-        if (token) {
-          postIntake(payload, token);
-          return;
-        }
-
-        if (!turnstileMounted) {
-          showError('Security verification is still loading. Wait a moment and try again.');
-          return;
-        }
-
-        intakePending = payload;
-        var turnstileApi = window.turnstile;
-        if (!turnstileApi || typeof turnstileApi.execute !== 'function') {
-          intakePending = null;
-          showError('Please complete the verification challenge.');
-          return;
-        }
-
-        clearTurnstileExecuteTimer();
-        turnstileExecuteTimer = setTimeout(function () {
-          if (!intakePending) return;
-          intakePending = null;
-          showError('Verification failed. Please try again.');
-        }, 20000);
-
-        turnstileApi.execute(turnstileWidgetId);
+        postIntake(Object.fromEntries(formData));
       });
     })();
   </script>

@@ -1,5 +1,3 @@
-const TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
-
 const DEFAULT_N8N_WEBHOOK_URL =
 
   "https://automation.sababim.co.il/webhook/reception-form";
@@ -25,44 +23,6 @@ export async function onRequestPost(context) {
   } catch {
 
     return json({ error: "Invalid request body." }, 400);
-
-  }
-
-
-
-  const turnstileToken = body["cf-turnstile-response"] ?? body.turnstileToken;
-
-  const turnstileSecret = env.TURNSTILE_SECRET_KEY;
-
-
-
-  if (turnstileSecret) {
-
-    if (!turnstileToken) {
-
-      return json({ error: "Please complete the verification challenge." }, 400);
-
-    }
-
-
-
-    const turnstileRes = await verifyTurnstile(
-
-      turnstileToken,
-
-      turnstileSecret,
-
-      request.headers.get("cf-connecting-ip") ?? undefined,
-
-    );
-
-
-
-    if (!turnstileRes.success) {
-
-      return json({ error: "Verification failed. Please try again." }, 400);
-
-    }
 
   }
 
@@ -282,53 +242,4 @@ function json(data, status) {
 
 }
 
-
-
-async function verifyTurnstile(token, secret, remoteIp) {
-
-  try {
-
-    const form = new FormData();
-
-    form.append("secret", secret);
-
-    form.append("response", token);
-
-    if (remoteIp) {
-
-      form.append("remoteip", remoteIp);
-
-    }
-
-
-
-    const response = await fetch(TURNSTILE_VERIFY_URL, {
-
-      method: "POST",
-
-      body: form,
-
-    });
-
-
-
-    if (!response.ok) {
-
-      return { success: false };
-
-    }
-
-
-
-    const result = await response.json();
-
-    return { success: Boolean(result.success) };
-
-  } catch {
-
-    return { success: false };
-
-  }
-
-}
 
