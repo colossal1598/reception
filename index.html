@@ -1885,7 +1885,7 @@
 
   </div>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__onTurnstileScriptLoad" defer></script>
 
   <script>
     (function () {
@@ -1939,7 +1939,11 @@
       var turnstileRequired = false;
       var turnstileWidgetId = null;
       var turnstileToken = null;
+      var turnstileSiteKey = null;
+      var turnstileScriptReady = false;
+      var turnstileMounted = false;
       var intakePending = null;
+      var turnstileExecuteTimer = null;
 
       var contactDetailsPlaceholders = {
         phone: 'Your phone number (with country code)',
@@ -1991,6 +1995,13 @@
         });
       });
 
+      function clearTurnstileExecuteTimer() {
+        if (turnstileExecuteTimer) {
+          clearTimeout(turnstileExecuteTimer);
+          turnstileExecuteTimer = null;
+        }
+      }
+
       function resetTurnstile() {
         var turnstileApi = window.turnstile;
         if (turnstileApi && typeof turnstileApi.reset === 'function' && turnstileWidgetId !== null) {
@@ -1998,37 +2009,75 @@
         }
       }
 
-      function mountTurnstile(siteKey) {
+      function onTurnstileToken(token) {
+        turnstileToken = token;
+        if (intakePending) {
+          clearTurnstileExecuteTimer();
+          postIntake(intakePending, token);
+        }
+      }
+
+      function maybeMountTurnstile() {
+        if (!turnstileSiteKey || !turnstileScriptReady || turnstileMounted) return;
+
         var turnstileApi = window.turnstile;
         if (!turnstileApi || typeof turnstileApi.render !== 'function') return;
 
         turnstileApi.ready(function () {
+          if (turnstileMounted) return;
+
           turnstileWidgetId = turnstileApi.render('#turnstile-widget', {
-            sitekey: siteKey,
+            sitekey: turnstileSiteKey,
             theme: 'auto',
-            callback: function (token) { window.__intakeTurnstileOk(token); },
-            'error-callback': function () { window.__intakeTurnstileError(); },
-            'expired-callback': function () { window.__intakeTurnstileExpired(); }
+            size: 'flexible',
+            callback: onTurnstileToken,
+            'error-callback': function () {
+              if (!intakePending) return;
+              intakePending = null;
+              clearTurnstileExecuteTimer();
+              showError('Verification failed. Please try again.');
+            },
+            'expired-callback': function () {
+              turnstileToken = null;
+              resetTurnstile();
+            }
           });
+
+          turnstileMounted = turnstileWidgetId !== null && turnstileWidgetId !== undefined;
         });
       }
 
-      function initTurnstile() {
-        fetch('/api/turnstile-config')
-          .then(function (res) { return res.json(); })
-          .then(function (data) {
-            if (!data.siteKey) return;
-            turnstileRequired = true;
-            if (window.turnstile) {
-              mountTurnstile(data.siteKey);
-            } else {
-              window.addEventListener('load', function () { mountTurnstile(data.siteKey); });
-            }
-          })
-          .catch(function () {});
+      window.__onTurnstileScriptLoad = function () {
+        turnstileScriptReady = true;
+        maybeMountTurnstile();
+      };
+
+      if (window.turnstile) {
+        turnstileScriptReady = true;
       }
 
-      initTurnstile();
+      fetch('/api/turnstile-config')
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (!data.siteKey) return;
+          turnstileRequired = true;
+          turnstileSiteKey = data.siteKey;
+          maybeMountTurnstile();
+        })
+        .catch(function () {});
+
+      function getTurnstileToken(formData) {
+        if (turnstileToken) return turnstileToken;
+
+        var fromForm = formData.get('cf-turnstile-response');
+        if (fromForm) return fromForm;
+
+        if (turnstileWidgetId !== null && window.turnstile && typeof window.turnstile.getResponse === 'function') {
+          return window.turnstile.getResponse(turnstileWidgetId) || null;
+        }
+
+        return null;
+      }
 
       function showError(message) {
         errorBox.textContent = message;
@@ -2071,24 +2120,6 @@
           });
       }
 
-      window.__intakeTurnstileOk = function (token) {
-        turnstileToken = token;
-        if (intakePending) {
-          postIntake(intakePending, token);
-        }
-      };
-
-      window.__intakeTurnstileError = function () {
-        if (!intakePending) return;
-        intakePending = null;
-        showError('Verification failed. Please try again.');
-      };
-
-      window.__intakeTurnstileExpired = function () {
-        turnstileToken = null;
-        resetTurnstile();
-      };
-
       form.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -2103,11 +2134,6 @@
         var email = String(formData.get('email') || '').trim();
         var selectedMethod = String(formData.get('contact_method') || 'email');
         var contactDetails = String(formData.get('contact_details') || '').trim();
-        var token = turnstileToken || formData.get('cf-turnstile-response');
-        if (!token && turnstileWidgetId !== null && window.turnstile) {
-          token = window.turnstile.getResponse(turnstileWidgetId);
-        }
-
         if (!name) {
           showError('Please enter your name.');
           return;
@@ -2141,26 +2167,33 @@
           return;
         }
 
+        var token = getTurnstileToken(formData);
         if (token) {
           postIntake(payload, token);
           return;
         }
 
+        if (!turnstileMounted) {
+          showError('Security verification is still loading. Wait a moment and try again.');
+          return;
+        }
+
         intakePending = payload;
         var turnstileApi = window.turnstile;
-        if (!turnstileApi || turnstileWidgetId === null) {
-          showError('Please complete the verification challenge.');
+        if (!turnstileApi || typeof turnstileApi.execute !== 'function') {
           intakePending = null;
+          showError('Please complete the verification challenge.');
           return;
         }
 
-        if (typeof turnstileApi.execute === 'function') {
-          turnstileApi.execute(turnstileWidgetId);
-          return;
-        }
+        clearTurnstileExecuteTimer();
+        turnstileExecuteTimer = setTimeout(function () {
+          if (!intakePending) return;
+          intakePending = null;
+          showError('Verification failed. Please try again.');
+        }, 20000);
 
-        intakePending = null;
-        showError('Please complete the verification challenge.');
+        turnstileApi.execute(turnstileWidgetId);
       });
     })();
   </script>
